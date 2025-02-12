@@ -1,1828 +1,212 @@
-{
-  "gameID": 1339231,
-  "countryID": 1,
-  "variantID": 1,
-  "potType": "Unranked",
-  "turn": 1,
-  "phase": "Builds",
-  "gameOver": "No",
-  "pressType": "Regular",
-  "phases": [
-    {
-      "units": [
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 11,
-          "countryID": 3
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 12,
-          "countryID": 3
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 29,
-          "countryID": 7
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 79,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 31,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 49,
-          "countryID": 2
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 47,
-          "countryID": 2
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 46,
-          "countryID": 2
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 6,
-          "countryID": 1
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 3,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 2,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 37,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 38,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 41,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 22,
-          "countryID": 6
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 23,
-          "countryID": 6
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 74,
-          "countryID": 5
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 73,
-          "countryID": 5
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 72,
-          "countryID": 5
-        }
-      ],
-      "orders": [
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 15,
-          "unitType": "Army",
-          "type": "Hold",
-          "toTerrID": 0,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 27,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 69,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 11,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 65,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 12,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 16,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 49,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 8,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 47,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 48,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 46,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 61,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 6,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 53,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 3,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 4,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 2,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 52,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 37,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 36,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 38,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 37,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 41,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 48,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 29,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 75,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 79,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 57,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 31,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 28,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 22,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 20,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 24,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 69,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 23,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 22,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 74,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 19,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 73,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 18,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 0,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 72,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 73,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        }
-      ],
-      "centers": [
-        {
-          "terrID": 1,
-          "countryID": 1
-        },
-        {
-          "terrID": 2,
-          "countryID": 1
-        },
-        {
-          "terrID": 3,
-          "countryID": 1
-        },
-        {
-          "terrID": 4,
-          "countryID": 1
-        },
-        {
-          "terrID": 5,
-          "countryID": 1
-        },
-        {
-          "terrID": 6,
-          "countryID": 1
-        },
-        {
-          "terrID": 7,
-          "countryID": 0
-        },
-        {
-          "terrID": 8,
-          "countryID": 0
-        },
-        {
-          "terrID": 9,
-          "countryID": 0
-        },
-        {
-          "terrID": 10,
-          "countryID": 0
-        },
-        {
-          "terrID": 11,
-          "countryID": 3
-        },
-        {
-          "terrID": 12,
-          "countryID": 3
-        },
-        {
-          "terrID": 13,
-          "countryID": 3
-        },
-        {
-          "terrID": 14,
-          "countryID": 3
-        },
-        {
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "terrID": 16,
-          "countryID": 3
-        },
-        {
-          "terrID": 17,
-          "countryID": 0
-        },
-        {
-          "terrID": 18,
-          "countryID": 0
-        },
-        {
-          "terrID": 19,
-          "countryID": 0
-        },
-        {
-          "terrID": 20,
-          "countryID": 0
-        },
-        {
-          "terrID": 21,
-          "countryID": 0
-        },
-        {
-          "terrID": 22,
-          "countryID": 6
-        },
-        {
-          "terrID": 23,
-          "countryID": 6
-        },
-        {
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "terrID": 25,
-          "countryID": 6
-        },
-        {
-          "terrID": 26,
-          "countryID": 6
-        },
-        {
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "terrID": 28,
-          "countryID": 7
-        },
-        {
-          "terrID": 29,
-          "countryID": 7
-        },
-        {
-          "terrID": 30,
-          "countryID": 7
-        },
-        {
-          "terrID": 31,
-          "countryID": 7
-        },
-        {
-          "terrID": 32,
-          "countryID": 7
-        },
-        {
-          "terrID": 33,
-          "countryID": 7
-        },
-        {
-          "terrID": 34,
-          "countryID": 0
-        },
-        {
-          "terrID": 35,
-          "countryID": 0
-        },
-        {
-          "terrID": 36,
-          "countryID": 0
-        },
-        {
-          "terrID": 37,
-          "countryID": 4
-        },
-        {
-          "terrID": 38,
-          "countryID": 4
-        },
-        {
-          "terrID": 39,
-          "countryID": 4
-        },
-        {
-          "terrID": 40,
-          "countryID": 4
-        },
-        {
-          "terrID": 41,
-          "countryID": 4
-        },
-        {
-          "terrID": 42,
-          "countryID": 4
-        },
-        {
-          "terrID": 43,
-          "countryID": 0
-        },
-        {
-          "terrID": 44,
-          "countryID": 0
-        },
-        {
-          "terrID": 45,
-          "countryID": 2
-        },
-        {
-          "terrID": 46,
-          "countryID": 2
-        },
-        {
-          "terrID": 47,
-          "countryID": 2
-        },
-        {
-          "terrID": 48,
-          "countryID": 2
-        },
-        {
-          "terrID": 49,
-          "countryID": 2
-        },
-        {
-          "terrID": 50,
-          "countryID": 2
-        },
-        {
-          "terrID": 51,
-          "countryID": 0
-        },
-        {
-          "terrID": 52,
-          "countryID": 0
-        },
-        {
-          "terrID": 53,
-          "countryID": 0
-        },
-        {
-          "terrID": 54,
-          "countryID": 0
-        },
-        {
-          "terrID": 55,
-          "countryID": 0
-        },
-        {
-          "terrID": 56,
-          "countryID": 0
-        },
-        {
-          "terrID": 57,
-          "countryID": 0
-        },
-        {
-          "terrID": 58,
-          "countryID": 0
-        },
-        {
-          "terrID": 59,
-          "countryID": 0
-        },
-        {
-          "terrID": 60,
-          "countryID": 0
-        },
-        {
-          "terrID": 61,
-          "countryID": 0
-        },
-        {
-          "terrID": 62,
-          "countryID": 0
-        },
-        {
-          "terrID": 63,
-          "countryID": 0
-        },
-        {
-          "terrID": 64,
-          "countryID": 0
-        },
-        {
-          "terrID": 65,
-          "countryID": 0
-        },
-        {
-          "terrID": 66,
-          "countryID": 0
-        },
-        {
-          "terrID": 67,
-          "countryID": 0
-        },
-        {
-          "terrID": 68,
-          "countryID": 0
-        },
-        {
-          "terrID": 69,
-          "countryID": 0
-        },
-        {
-          "terrID": 70,
-          "countryID": 5
-        },
-        {
-          "terrID": 71,
-          "countryID": 5
-        },
-        {
-          "terrID": 72,
-          "countryID": 5
-        },
-        {
-          "terrID": 73,
-          "countryID": 5
-        },
-        {
-          "terrID": 74,
-          "countryID": 5
-        },
-        {
-          "terrID": 75,
-          "countryID": 5
-        },
-        {
-          "terrID": 76,
-          "countryID": 0
-        },
-        {
-          "terrID": 77,
-          "countryID": 0
-        },
-        {
-          "terrID": 78,
-          "countryID": 7
-        },
-        {
-          "terrID": 79,
-          "countryID": 7
-        },
-        {
-          "terrID": 80,
-          "countryID": 0
-        },
-        {
-          "terrID": 81,
-          "countryID": 0
-        }
-      ],
-      "turn": 0,
-      "phase": "Diplomacy"
-    },
-    {
-      "units": [
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 8,
-          "countryID": 2
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 47,
-          "countryID": 2
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 61,
-          "countryID": 2
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 16,
-          "countryID": 3
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 65,
-          "countryID": 3
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 36,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 37,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 41,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 4,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 52,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 53,
-          "countryID": 1
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 73,
-          "countryID": 5
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 18,
-          "countryID": 5
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 19,
-          "countryID": 5
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 75,
-          "countryID": 7
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 57,
-          "countryID": 7
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 28,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 20,
-          "countryID": 6
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 22,
-          "countryID": 6
-        }
-      ],
-      "orders": [
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 8,
-          "unitType": "Army",
-          "type": "Hold",
-          "toTerrID": 0,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 15,
-          "unitType": "Army",
-          "type": "Hold",
-          "toTerrID": 0,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 36,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 34,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 16,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 10,
-          "fromTerrID": 0,
-          "viaConvoy": "Yes",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 37,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 43,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 47,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 48,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 2,
-          "terrID": 61,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 7,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 4,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 44,
-          "fromTerrID": 0,
-          "viaConvoy": "Yes",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 52,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 35,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 4,
-          "terrID": 41,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 42,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 73,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 74,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 75,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 21,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 57,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 34,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 20,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 17,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 24,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 69,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 6,
-          "terrID": 22,
-          "unitType": "Army",
-          "type": "Move",
-          "toTerrID": 20,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 18,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 17,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 27,
-          "unitType": "Fleet",
-          "type": "Move",
-          "toTerrID": 69,
-          "fromTerrID": 0,
-          "viaConvoy": "No",
-          "success": "No",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 7,
-          "terrID": 28,
-          "unitType": "Army",
-          "type": "Support move",
-          "toTerrID": 21,
-          "fromTerrID": 75,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 5,
-          "terrID": 19,
-          "unitType": "Army",
-          "type": "Support move",
-          "toTerrID": 17,
-          "fromTerrID": 18,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 3,
-          "terrID": 65,
-          "unitType": "Fleet",
-          "type": "Convoy",
-          "toTerrID": 10,
-          "fromTerrID": 16,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        },
-        {
-          "turn": 1,
-          "phase": "Diplomacy",
-          "countryID": 1,
-          "terrID": 53,
-          "unitType": "Fleet",
-          "type": "Convoy",
-          "toTerrID": 44,
-          "fromTerrID": 4,
-          "viaConvoy": "No",
-          "success": "Yes",
-          "dislodged": "No"
-        }
-      ],
-      "centers": [
-        {
-          "terrID": 1,
-          "countryID": 1
-        },
-        {
-          "terrID": 2,
-          "countryID": 1
-        },
-        {
-          "terrID": 3,
-          "countryID": 1
-        },
-        {
-          "terrID": 4,
-          "countryID": 1
-        },
-        {
-          "terrID": 5,
-          "countryID": 1
-        },
-        {
-          "terrID": 6,
-          "countryID": 1
-        },
-        {
-          "terrID": 8,
-          "countryID": 0
-        },
-        {
-          "terrID": 11,
-          "countryID": 3
-        },
-        {
-          "terrID": 12,
-          "countryID": 3
-        },
-        {
-          "terrID": 13,
-          "countryID": 3
-        },
-        {
-          "terrID": 14,
-          "countryID": 3
-        },
-        {
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "terrID": 16,
-          "countryID": 3
-        },
-        {
-          "terrID": 18,
-          "countryID": 5
-        },
-        {
-          "terrID": 19,
-          "countryID": 0
-        },
-        {
-          "terrID": 20,
-          "countryID": 0
-        },
-        {
-          "terrID": 22,
-          "countryID": 6
-        },
-        {
-          "terrID": 23,
-          "countryID": 6
-        },
-        {
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "terrID": 25,
-          "countryID": 6
-        },
-        {
-          "terrID": 26,
-          "countryID": 6
-        },
-        {
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "terrID": 28,
-          "countryID": 7
-        },
-        {
-          "terrID": 29,
-          "countryID": 7
-        },
-        {
-          "terrID": 30,
-          "countryID": 7
-        },
-        {
-          "terrID": 31,
-          "countryID": 7
-        },
-        {
-          "terrID": 32,
-          "countryID": 7
-        },
-        {
-          "terrID": 33,
-          "countryID": 7
-        },
-        {
-          "terrID": 36,
-          "countryID": 0
-        },
-        {
-          "terrID": 37,
-          "countryID": 4
-        },
-        {
-          "terrID": 38,
-          "countryID": 4
-        },
-        {
-          "terrID": 39,
-          "countryID": 4
-        },
-        {
-          "terrID": 40,
-          "countryID": 4
-        },
-        {
-          "terrID": 41,
-          "countryID": 4
-        },
-        {
-          "terrID": 42,
-          "countryID": 4
-        },
-        {
-          "terrID": 45,
-          "countryID": 2
-        },
-        {
-          "terrID": 46,
-          "countryID": 2
-        },
-        {
-          "terrID": 47,
-          "countryID": 2
-        },
-        {
-          "terrID": 48,
-          "countryID": 2
-        },
-        {
-          "terrID": 49,
-          "countryID": 2
-        },
-        {
-          "terrID": 50,
-          "countryID": 2
-        },
-        {
-          "terrID": 52,
-          "countryID": 1
-        },
-        {
-          "terrID": 53,
-          "countryID": 1
-        },
-        {
-          "terrID": 57,
-          "countryID": 7
-        },
-        {
-          "terrID": 61,
-          "countryID": 2
-        },
-        {
-          "terrID": 65,
-          "countryID": 3
-        },
-        {
-          "terrID": 69,
-          "countryID": 0
-        },
-        {
-          "terrID": 70,
-          "countryID": 5
-        },
-        {
-          "terrID": 71,
-          "countryID": 5
-        },
-        {
-          "terrID": 72,
-          "countryID": 5
-        },
-        {
-          "terrID": 73,
-          "countryID": 5
-        },
-        {
-          "terrID": 74,
-          "countryID": 5
-        },
-        {
-          "terrID": 75,
-          "countryID": 7
-        }
-      ],
-      "turn": 1,
-      "phase": "Diplomacy"
-    },
-    {
-      "units": [
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 7,
-          "countryID": 2
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 8,
-          "countryID": 2
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 10,
-          "countryID": 3
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 17,
-          "countryID": 5
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 19,
-          "countryID": 5
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 20,
-          "countryID": 6
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 21,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 22,
-          "countryID": 6
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 28,
-          "countryID": 7
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 35,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 36,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 42,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 43,
-          "countryID": 4
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 44,
-          "countryID": 1
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 48,
-          "countryID": 2
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 53,
-          "countryID": 1
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 57,
-          "countryID": 7
-        },
-        {
-          "unitType": "Fleet",
-          "retreating": "No",
-          "terrID": 65,
-          "countryID": 3
-        },
-        {
-          "unitType": "Army",
-          "retreating": "No",
-          "terrID": 74,
-          "countryID": 5
-        }
-      ],
-      "centers": [
-        {
-          "terrID": 1,
-          "countryID": 1
-        },
-        {
-          "terrID": 2,
-          "countryID": 1
-        },
-        {
-          "terrID": 3,
-          "countryID": 1
-        },
-        {
-          "terrID": 4,
-          "countryID": 1
-        },
-        {
-          "terrID": 5,
-          "countryID": 1
-        },
-        {
-          "terrID": 6,
-          "countryID": 1
-        },
-        {
-          "terrID": 7,
-          "countryID": 2
-        },
-        {
-          "terrID": 8,
-          "countryID": 2
-        },
-        {
-          "terrID": 10,
-          "countryID": 3
-        },
-        {
-          "terrID": 11,
-          "countryID": 3
-        },
-        {
-          "terrID": 12,
-          "countryID": 3
-        },
-        {
-          "terrID": 13,
-          "countryID": 3
-        },
-        {
-          "terrID": 14,
-          "countryID": 3
-        },
-        {
-          "terrID": 15,
-          "countryID": 3
-        },
-        {
-          "terrID": 16,
-          "countryID": 3
-        },
-        {
-          "terrID": 17,
-          "countryID": 5
-        },
-        {
-          "terrID": 18,
-          "countryID": 5
-        },
-        {
-          "terrID": 19,
-          "countryID": 5
-        },
-        {
-          "terrID": 20,
-          "countryID": 6
-        },
-        {
-          "terrID": 21,
-          "countryID": 7
-        },
-        {
-          "terrID": 22,
-          "countryID": 6
-        },
-        {
-          "terrID": 23,
-          "countryID": 6
-        },
-        {
-          "terrID": 24,
-          "countryID": 6
-        },
-        {
-          "terrID": 25,
-          "countryID": 6
-        },
-        {
-          "terrID": 26,
-          "countryID": 6
-        },
-        {
-          "terrID": 27,
-          "countryID": 7
-        },
-        {
-          "terrID": 28,
-          "countryID": 7
-        },
-        {
-          "terrID": 29,
-          "countryID": 7
-        },
-        {
-          "terrID": 30,
-          "countryID": 7
-        },
-        {
-          "terrID": 31,
-          "countryID": 7
-        },
-        {
-          "terrID": 32,
-          "countryID": 7
-        },
-        {
-          "terrID": 33,
-          "countryID": 7
-        },
-        {
-          "terrID": 34,
-          "countryID": 0
-        },
-        {
-          "terrID": 35,
-          "countryID": 1
-        },
-        {
-          "terrID": 36,
-          "countryID": 4
-        },
-        {
-          "terrID": 37,
-          "countryID": 4
-        },
-        {
-          "terrID": 38,
-          "countryID": 4
-        },
-        {
-          "terrID": 39,
-          "countryID": 4
-        },
-        {
-          "terrID": 40,
-          "countryID": 4
-        },
-        {
-          "terrID": 41,
-          "countryID": 4
-        },
-        {
-          "terrID": 42,
-          "countryID": 4
-        },
-        {
-          "terrID": 43,
-          "countryID": 4
-        },
-        {
-          "terrID": 44,
-          "countryID": 1
-        },
-        {
-          "terrID": 45,
-          "countryID": 2
-        },
-        {
-          "terrID": 46,
-          "countryID": 2
-        },
-        {
-          "terrID": 47,
-          "countryID": 2
-        },
-        {
-          "terrID": 48,
-          "countryID": 2
-        },
-        {
-          "terrID": 49,
-          "countryID": 2
-        },
-        {
-          "terrID": 50,
-          "countryID": 2
-        },
-        {
-          "terrID": 52,
-          "countryID": 1
-        },
-        {
-          "terrID": 53,
-          "countryID": 1
-        },
-        {
-          "terrID": 57,
-          "countryID": 7
-        },
-        {
-          "terrID": 61,
-          "countryID": 2
-        },
-        {
-          "terrID": 65,
-          "countryID": 3
-        },
-        {
-          "terrID": 69,
-          "countryID": 0
-        },
-        {
-          "terrID": 70,
-          "countryID": 5
-        },
-        {
-          "terrID": 71,
-          "countryID": 5
-        },
-        {
-          "terrID": 72,
-          "countryID": 5
-        },
-        {
-          "terrID": 73,
-          "countryID": 5
-        },
-        {
-          "terrID": 74,
-          "countryID": 5
-        },
-        {
-          "terrID": 75,
-          "countryID": 7
-        }
-      ],
-      "turn": 1,
-      "phase": "Builds",
-      "orders": []
-    }
-  ],
-  "standoffs": [
-    {
-      "terrID": 17,
-      "countryID": 0
-    },
-    {
-      "terrID": 34,
-      "countryID": 0
-    },
-    {
-      "terrID": 69,
-      "countryID": 0
-    }
-  ],
-  "occupiedFrom": [],
-  "votes": null,
-  "orderStatus": "",
-  "status": "Playing",
-  "drawType": "draw-votes-public",
-  "processTime": "1739064116",
-  "phaseLengthInMinutes": "4320",
-  "orderStatuses": {
-    "1": "",
-    "2": "",
-    "3": "Saved,Completed,Ready",
-    "4": "Saved,Completed,Ready",
-    "5": "",
-    "6": "",
-    "7": ""
-  },
-  "publicVotes": {
-    "1": null,
-    "2": null,
-    "3": null,
-    "4": null,
-    "5": null,
-    "6": null,
-    "7": null
-  }
-}
+Spring 1901
+England: Fleet EDI - NWG (succeeds), Army LVP - YOR (succeeds), Fleet LON - ENG (succeeds), 
+France: Fleet BRE - MAO (succeeds), Army PAR - BUR (succeeds), 
+Italy: Army VEN - TYR (succeeds), Army ROM - APU (succeeds), Fleet NAP - ION (succeeds), 
+Germany: Fleet KIE - HOL (succeeds), Army BER - KIE (succeeds), Army MUN - RUH (succeeds), 
+Austria: Army BUD - SER (succeeds), Army VIE - GAL (fails), Fleet TRI - ALB (succeeds), 
+Turkey: Fleet ANK - BLA (fails), Army CON - BUL (succeeds), Army SMY - ARM (succeeds), 
+Russia: Army MOS - UKR (succeeds), Fleet BUL (NC) - BOT (succeeds), Army WAR - GAL (fails), Fleet SEV - BLA (fails), 
+
+Autumn 1901
+England: Fleet ENG - BRE (succeeds), Army YOR - NWY via convoy  (succeeds), Fleet NWG C YOR - NWY (succeeds), 
+France: Army MAR - SPA (succeeds), Army BUR - BEL (fails), Fleet MAO - POR (succeeds), 
+Italy: Army APU - TUN via convoy  (succeeds), Army TYR - MUN (succeeds), Fleet ION C APU - TUN (succeeds), 
+Germany: Army RUH - BEL (succeeds), Army KIE - DEN (succeeds), 
+Austria: Army VIE - TRI (succeeds), Fleet ALB - GRE (succeeds), 
+Turkey: Army BUL - RUM (fails), Fleet ANK - BLA (succeeds), Army ARM - SEV (fails), 
+Russia: Army WAR - GAL (succeeds), Fleet BOT - SWE (succeeds), Army UKR - RUM (fails), 
+
+Autumn 1901
+England: Build Fleet LON, Build Fleet EDI, 
+France: Build Army PAR, 
+Italy: Build Army VEN, Build Fleet NAP, 
+Germany: Build Army KIE, Build Army BER, 
+Austria: Build Army VIE, Build Army BUD, 
+Turkey: Build Army CON, 
+Russia: Build Army MOS, 
+
+Spring 1902
+England: Fleet EDI - NWG (succeeds), Fleet LON - ENG (succeeds), Fleet BRE - MAO (fails), Army NWY - STP (succeeds), Fleet NWG - NWY (succeeds), 
+France: Army SPA - GAS (succeeds), Fleet POR - MAO (fails), 
+Italy: Army TUN hold (fails), Army VEN - TYR (succeeds), Fleet NAP - ION (succeeds), Fleet ION - EAS (succeeds), 
+Germany: Army DEN hold (fails), Fleet HOL - BEL (fails), Army BEL - BUR (fails), Army BER - MUN (succeeds), 
+Austria: Army VIE - GAL (succeeds), Army SER - GRE (succeeds), Fleet GRE - AEG (succeeds), Army TRI - SER (succeeds), 
+Turkey: Army CON - BUL (fails), Army BUL - RUM (fails), Army ARM - SEV (fails), 
+Russia: Fleet SWE hold (fails), Army GAL - RUM (fails), 
+
+Spring 1902
+Italy: Army MUN retreat to SIL (succeeds), 
+Russia: Army GAL retreat to WAR (succeeds), 
+
+Autumn 1902
+England: Fleet BRE hold (fails), Army STP hold (fails), Fleet NWG - NWY (fails), Fleet NWY - SWE (fails), 
+France: Army PAR - BRE (fails), Fleet POR - MAO (succeeds), 
+Italy: Army TYR - TRI (succeeds), Fleet EAS - SMY (fails), Army TUN - ALB via convoy  (succeeds), Army SIL - BER (fails), Fleet ION C TUN - ALB (succeeds), 
+Germany: Army DEN hold (fails), Fleet HOL hold (fails), Army BEL - BUR (succeeds), Army KIE - BER (fails), 
+Austria: Army GRE - BUL (succeeds), Army GAL - RUM (succeeds), 
+Turkey: Army CON - SMY (fails), Army BUL - RUM (fails), Army ARM - SEV (fails), 
+Russia: Army UKR - RUM (fails), Army WAR - GAL (succeeds), Fleet SWE - NWY (fails), 
+
+Autumn 1902
+France: Army BUR retreat to MAR (succeeds), 
+Turkey: Army BUL disband, 
+
+Autumn 1902
+England: Build Fleet LVP, 
+Germany: Build Army BER, 
+Austria: Build Army VIE, 
+Russia: Destroy SWE, 
+
+Spring 1903
+England: Army STP hold (fails), Fleet NWG hold (fails), Fleet BRE hold (fails), Fleet NWY - SWE (fails), Fleet LVP - IRI (fails), 
+France: Fleet MAO - IRI (fails), Army MAR - BUR (succeeds), 
+Italy: Army TRI - SER (fails), Fleet EAS - AEG (fails), Army ALB - GRE (succeeds), Army SIL - BOH (succeeds), 
+Germany: Army DEN - SWE (fails), Fleet HOL - BEL (succeeds), Army KIE - BER (succeeds), Army BER - PRU (succeeds), 
+Austria: Fleet AEG - GRE (fails), Army SER - TRI (succeeds), Army RUM - GAL (fails), 
+Turkey: Army CON - BUL (succeeds), Army ARM - SMY (succeeds), 
+Russia: Army GAL - RUM (succeeds), Army MOS - WAR (succeeds), 
+
+Spring 1903
+Italy: Army TRI retreat to VEN (succeeds), 
+Germany: Army BUR retreat to RUH (succeeds), 
+Austria: Army BUL retreat to SER (succeeds), Army RUM disband, 
+
+Autumn 1903
+England: Fleet BRE hold (fails), Fleet NWG - DEN (fails), Fleet LVP - IRI (succeeds), Army STP - MOS (fails), Fleet NWY - SWE (fails), 
+France: Army GAS - BRE (succeeds), Army BUR - BEL (fails), Fleet MAO - ENG (fails), 
+Italy: Fleet EAS - AEG (fails), Army BOH - TYR (succeeds), 
+Germany: Fleet BEL hold (fails), Army RUH - MUN (succeeds), Army DEN - SWE (fails), Army MUN - SIL (succeeds), Army PRU - LVN (succeeds), 
+Austria: Fleet AEG - GRE (fails), 
+Turkey: Army SMY hold (fails), Army BUL - SER (fails), Fleet BLA - CON (succeeds), 
+Russia: Army UKR - MOS (fails), Army RUM - BUD (fails), Fleet SEV - RUM (fails), Army WAR - MOS (fails), 
+
+Autumn 1903
+England: Fleet BRE retreat to PIC (succeeds), 
+
+Autumn 1903
+England: Destroy IRI, 
+France: Build Fleet MAR, 
+Austria: Destroy AEG, 
+Turkey: Build Army ANK, 
+Russia: Build Army MOS, 
+
+Spring 1904
+England: Fleet NWG - SKA (succeeds), Fleet PIC - BEL (succeeds), Army STP - MOS (fails), Fleet NWY - SWE (fails), 
+France: Army BRE hold (fails), Fleet MAR - SPA (NC) (succeeds), Army BUR - RUH (fails), Fleet MAO - IRI (succeeds), 
+Italy: Army VEN - TRI (succeeds), Fleet ION - ADR (succeeds), Fleet EAS - ION (succeeds), Army GRE - SER (fails), 
+Germany: Army DEN - SWE (fails), Army MUN - RUH (fails), Army SIL - MUN (fails), Army BER - KIE (succeeds), Army LVN - PRU (succeeds), 
+Austria: Army VIE - GAL (succeeds), 
+Turkey: Army SMY hold (fails), Army BUL - SER (fails), Fleet CON - AEG (succeeds), Army ANK - CON (succeeds), 
+Russia: Army RUM - GAL (fails), Fleet SEV - RUM (fails), 
+
+Spring 1904
+Germany: Fleet BEL retreat to HOL (succeeds), 
+Austria: Army TRI retreat to VIE (succeeds), 
+
+Autumn 1904
+England: Fleet BEL hold (fails), Army STP hold (fails), Fleet NWY - SWE (succeeds), 
+France: Army BRE hold (fails), Fleet SPA (NC) - MAO (succeeds), Army PAR - BUR (fails), Army BUR - MUN (fails), Fleet IRI - LVP (succeeds), 
+Germany: Army KIE - RUH (succeeds), Army DEN - SWE (fails), Fleet HOL - BEL (fails), Army PRU - BER (succeeds), 
+Austria: Army SER - TRI (fails), Army GAL - RUM (fails), 
+Turkey: Army CON - BUL (fails), Army BUL - GRE (fails), Army SMY - CON (fails), 
+
+Autumn 1904
+England: Build Army EDI, 
+France: Build Fleet MAR, 
+Italy: Build Army VEN, 
+Germany: Destroy BER, 
+Austria: Destroy GAL, 
+Russia: Destroy SEV, 
+
+Spring 1905
+England: Army STP hold (fails), Army EDI - LVP (succeeds), Fleet SKA - DEN (succeeds), 
+France: Army BUR hold (fails), Army BRE hold (fails), Fleet MAR - SPA (NC) (succeeds), Fleet MAO - ENG (fails), Fleet LVP - IRI (succeeds), 
+Italy: Army GRE - SER (succeeds), Fleet ION - AEG (fails), Army VEN - ALB via convoy  (succeeds), Fleet ADR C VEN - ALB (succeeds), 
+Germany: Army DEN hold (fails), Army MUN - BUR (fails), Army RUH - BEL (succeeds), 
+Austria: Army SER hold (fails), Army VIE hold (fails), 
+Turkey: Army BUL - GRE (succeeds), Army SMY - CON (succeeds), Army CON - BUL (succeeds), 
+Russia: Army RUM - BUD (fails), Army WAR - LVN (succeeds), Army MOS - STP (fails), Army UKR - WAR (succeeds), 
+
+Spring 1905
+England: Fleet BEL retreat to NWG (succeeds), 
+Germany: Army DEN retreat to KIE (succeeds), 
+Austria: Army SER disband, 
+
+Autumn 1905
+England: Army LVP hold (fails), Fleet DEN hold (fails), Army STP hold (fails), Fleet ENG hold (fails), Fleet SWE - BOT (succeeds), 
+France: Army BUR hold (fails), Army BRE hold (fails), Fleet SPA (NC) - MAO (fails), Fleet MAO - ENG (fails), 
+Italy: Army TYR - VIE (succeeds), Army ALB - GRE (fails), 
+Germany: Army KIE hold (fails), Army MUN hold (fails), Army BEL hold (fails), Fleet HOL - HEL (succeeds), Army SIL - BER (succeeds), 
+Turkey: Army BUL - SER (fails), Army CON - BUL (fails), 
+Russia: Army RUM - BUD (fails), Army WAR - GAL (succeeds), Army MOS - STP (succeeds), 
+
+Autumn 1905
+England: Army STP retreat to NWY (succeeds), 
+Austria: Army VIE disband, 
+
+Autumn 1905
+France: Destroy SPA, 
+Italy: Build Fleet NAP, 
+Turkey: Build Fleet SMY, 
+Russia: Build Army WAR, 
+
+Spring 1906
+England: Army LVP hold (fails), Fleet DEN hold (fails), Fleet ENG hold (fails), Army NWY - STP (fails), 
+France: Army BUR hold (fails), Army BRE - PIC (succeeds), Fleet MAO - ENG (succeeds), 
+Italy: Army SER - BUL (fails), Fleet ION - GRE (fails), Army TRI - SER (fails), Fleet NAP - ION (fails), 
+Germany: Army BEL hold (fails), Army BER hold (fails), Army MUN hold (fails), Army KIE hold (fails), Fleet HEL - HOL (succeeds), 
+Austria: Army BUD - SER (fails), 
+Turkey: Army BUL - SER (fails), Fleet SMY - EAS (succeeds), Army CON - BUL (fails), 
+Russia: Army WAR hold (fails), Army STP hold (fails), Army GAL - BUD (succeeds), 
+
+Spring 1906
+England: Fleet ENG retreat to LON (succeeds), 
+Austria: Army BUD disband, 
+
+Autumn 1906
+England: Army LVP hold (fails), Fleet DEN hold (fails), Fleet BOT - BAL (succeeds), Army NWY - STP (fails), Fleet LON - ENG (fails), 
+France: Fleet IRI - LVP (fails), Army PIC - BEL (succeeds), 
+Italy: Fleet NAP - ION (fails), Fleet ION - GRE (fails), 
+Germany: Army BER hold (fails), Army MUN hold (fails), Army KIE hold (fails), Army BEL hold (fails), Fleet HOL - NWG (fails), 
+Turkey: Army BUL - SER (fails), Army CON - BUL (fails), Fleet EAS - ION (fails), 
+Russia: Army STP hold (fails), Army WAR - GAL (succeeds), 
+
+Autumn 1906
+Germany: Army BEL retreat to RUH (succeeds), 
+
+Autumn 1906
+France: Build Fleet BRE, 
+Germany: Destroy RUH, 
+Russia: Build Army WAR, 
+
+Spring 1907
+England: Army NWY hold (fails), Army LVP hold (fails), Fleet DEN - KIE (succeeds), Fleet LON - ENG (succeeds), 
+France: Fleet BRE - ENG (fails), Fleet ENG - WAL (succeeds), Army PAR - BUR (succeeds), Army BUR - RUH (succeeds), 
+Italy: Fleet NAP - ION (fails), Army ALB - SER (fails), Fleet ION - GRE (fails), Army SER - BUD (succeeds), 
+Germany: Army BER hold (fails), Fleet HOL - HEL (succeeds), Army KIE - DEN (fails), Army MUN - KIE (fails), 
+Turkey: Fleet EAS - ION (fails), Army BUL - SER (succeeds), Army CON - BUL (succeeds), 
+Russia: Army WAR - SIL (succeeds), Army STP - FIN (succeeds), Army LVN - STP (succeeds), Army GAL - VIE (fails), 
+
+Spring 1907
+Germany: Army KIE retreat to HOL (succeeds), 
+Russia: Army BUD disband, 
+
+Autumn 1907
+England: Fleet KIE hold (fails), Army LVP hold (fails), Army NWY hold (fails), Fleet ENG - IRI (succeeds), Fleet BAL - DEN (succeeds), Fleet NWG - LON (succeeds), 
+France: Fleet IRI - LVP (succeeds), Fleet BRE - MAO (succeeds), Army RUH - MUN (succeeds), Army BEL - HOL (fails), 
+Italy: Fleet NAP - ION (fails), Army TRI - SER (fails), Fleet ION - GRE (fails), 
+Germany: Fleet HEL - KIE (succeeds), 
+Turkey: Fleet EAS - ION (fails), 
+Russia: Army SIL - BOH (succeeds), Army FIN - SWE (succeeds), Army STP - NWY (fails), Army RUM - BUD (fails), 
+
+Autumn 1907
+England: Army LVP retreat to YOR (succeeds), Fleet KIE retreat to BAL (succeeds), 
+Germany: Army MUN retreat to SIL (succeeds), 
+
+Autumn 1907
+England: Destroy BAL, Destroy NWY, 
+France: Build Army PAR, Build Fleet BRE, 
+Germany: Destroy HOL, 
+Turkey: Build Fleet SMY, 
+Russia: Build Army WAR, 
+

@@ -7,7 +7,7 @@ with open('MovesCopied.txt','r') as filein:
     dict_from_file = json.load(filein)
 
 #dict['phases'][GAMETURN]['orders']
-print(dict_from_file['phases'][0]['orders'])
+#print(dict_from_file['phases'][0]['orders'])
 
 '''
 
@@ -130,6 +130,7 @@ seasonsDict = ['Spring', 'Autumn']
 convoyDict = {'Yes' : ' via convoy ', 'No' : ''}
 dislodgedDict = {'Yes'}
 
+#Unit Move Orders
 def holdOrder(order):
     unitType = order['unitType']
     occupiedTerritory = terrList[order['terrID']]
@@ -185,16 +186,47 @@ def convoyOrder(order):
     return formattedMove
 
 
+#Unit Build Orders
+def buildOrder(order):
+    buildType = order['type']
+    buildOrderSpace = terrList[order['terrID']]
+
+    formattedMove = (buildType + ' ' + buildOrderSpace)
+
+    return formattedMove
+
+
+#Unit Retreat Orders
+def retreatOrder(order):
+    unitType = order['unitType']
+    occupiedTerritory = terrList[order['terrID']]
+    retreatTargetTerritory = terrList[order['toTerrID']]
+    moveSucceeds = moveSuccessDict[order['success']]
+
+    formattedMove = unitType + ' ' + occupiedTerritory
+    if (order['type'] == 'Disband'):
+        formattedMove = formattedMove + ' disband'
+
+    else:
+        formattedMove = formattedMove + ' retreat to ' + retreatTargetTerritory + moveSucceeds
+
+    return formattedMove
+
+
+
+
 def compileReadableMovesSingleTurn(turnData):
     readableTurnData = turnData[len(turnData) - 1] + '\n'
 
     for i in range(7):
 
-        readableTurnData = readableTurnData + countryLoopList[i] + ': '
-        for unit in turnData[countryLoopList[i]]:
-            readableTurnData = readableTurnData + unit + ', '
+        if turnData[0][countryLoopList[i]] != []:
+            readableTurnData = readableTurnData + countryLoopList[i] + ': '
+            #print(turnData)
+            for unit in turnData[0][countryLoopList[i]]:
+                readableTurnData = readableTurnData + unit + ', '
 
-        readableTurnData = readableTurnData + '\n'
+            readableTurnData = readableTurnData + '\n'
 
     return readableTurnData
 
@@ -203,6 +235,7 @@ def compileReadableMovesFullGame(gameData):
     readableData = ''
     for turn in gameData:
         readableData = readableData + compileReadableMovesSingleTurn(turn)
+        readableData += '\n'
 
     return readableData
 
@@ -214,44 +247,60 @@ for phase in dict_from_file['phases']:
 
     currentTurn = ''
 
-    gameYear = seasonsDict[phase['orders'][1]['turn'] % 2] + ' '
-    gameYear = gameYear + str(startYear + int(math.floor(phase['orders'][1]['turn'] / 2.0)))
+    if phase['orders'] != []: #On a live game the final turn is blank and throws an error
 
-    game_turns.append([])
-    currentTurn = game_turns[len(game_turns) - 1]
+        turnType = phase['orders'][0]['phase'] #Diplomacy, Builds, Retreats
 
-    currentTurn.append({
-        'England' : [],
-        'France' : [],
-        'Italy' : [],
-        'Germany' : [],
-        'Austria' : [],
-        'Turkey' : [],
-        'Russia' : []
-        })
+        gameYear = seasonsDict[phase['orders'][0]['turn'] % 2] + ' '
+        gameYear = gameYear + str(startYear + int(math.floor(phase['orders'][0]['turn'] / 2.0)))
 
-    for order in phase['orders']:
-        currentCountry = countryList[order['countryID']]
-        orderType = order['type']
+        game_turns.append([])
+        currentTurn = game_turns[len(game_turns) - 1]
 
-        if orderType == 'Hold':
-            currentTurn[currentCountry].append(holdOrder(order))
+        currentTurn.append({
+            'England' : [],
+            'France' : [],
+            'Italy' : [],
+            'Germany' : [],
+            'Austria' : [],
+            'Turkey' : [],
+            'Russia' : []
+            })
 
-        if orderType == 'Move':
-            currentTurn[currentCountry].append(moveOrder(order))
+        if turnType == 'Diplomacy':
+            for order in phase['orders']:
+                currentCountry = countryList[order['countryID']]
+                orderType = order['type']
 
-        if orderType == 'Support Move':
-            currentTurn[currentCountry].append(supportMoveOrder(order))
+                if orderType == 'Hold':
+                    currentTurn[0][currentCountry].append(holdOrder(order))
 
-        if orderType == 'Support Hold':
-            currentTurn[currentCountry].append(supportHoldOrder(order))
+                if orderType == 'Move':
+                    currentTurn[0][currentCountry].append(moveOrder(order))
 
-        if orderType == 'Convoy':
-            currentTurn[currentCountry].append(convoyOrder(order))
+                if orderType == 'Support Move':
+                    currentTurn[0][currentCountry].append(supportMoveOrder(order))
 
-    currentTurn.append(gameYear)
+                if orderType == 'Support Hold':
+                    currentTurn[0][currentCountry].append(supportHoldOrder(order))
+
+                if orderType == 'Convoy':
+                    currentTurn[0][currentCountry].append(convoyOrder(order))
+
+        elif turnType == 'Retreats':
+            for order in phase['orders']:
+                currentCountry = countryList[order['countryID']]
+
+                currentTurn[0][currentCountry].append(retreatOrder(order))
+
+        elif turnType == 'Builds':
+            for order in phase['orders']:
+                currentCountry = countryList[order['countryID']]
+
+                currentTurn[0][currentCountry].append(buildOrder(order))
 
 
+        currentTurn.append(gameYear)
 
 
 
@@ -259,11 +308,28 @@ for phase in dict_from_file['phases']:
 with open('MovesFormated.txt', 'w') as formattedFile:
     finalString = ''
 
-    for item in game_turns:
-        for line in item:
-            finalString += line
+    '''
+    game_turns
+        gamePhase #Each phase of the game, such as retreats, builds, and moves
+            countryList #Each country has their moves stored in a list
+                moveList
+            Game turn (example: Spring 1901)
+    '''
+    finalString = compileReadableMovesFullGame(game_turns)
+
+    '''
+    for gamePhase in game_turns:
+        finalString += gamePhase[1]
+
+        for line in gamePhase[0]:
+            for country in countryLoopList:
+                print(line[country])
+
+                for move in line[country]:
+                    print(finalString)
+                    finalString += move + ', '
 
         finalString += '\n'
-
+    '''
     formattedFile.write(finalString)
 
