@@ -1,13 +1,21 @@
 import json
 import math
+import requests
 
-#https://webdiplomacy.net/api.php?route=game/status&gameID=1337481&countryID=2
 
-with open('MovesCopied.txt','r') as filein:
-    dict_from_file = json.load(filein)
+
+wDKey = ''
+parameters = {'gameID' : 1111967, 'countryID' : '1'}
+#header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
+cookie = {'wD-Key' : wDKey}
+dict_from_file = requests.get(url = 'https://webdiplomacy.net/api.php?route=game/status', params=parameters, cookies = cookie).json()
+
+
+#with open('MovesCopied.txt','r') as filein:
+    #dict_from_file = json.load(filein)
 
 #dict['phases'][GAMETURN]['orders']
-#print(dict_from_file['phases'][0]['orders'])
+
 
 '''
 
@@ -216,7 +224,7 @@ def retreatOrder(order):
 
 
 def compileReadableMovesSingleTurn(turnData):
-    readableTurnData = turnData[len(turnData) - 1] + '\n'
+    readableTurnData = turnData[len(turnData) - 1] + ' ' + '\n'
 
     for i in range(7):
 
@@ -253,6 +261,7 @@ for phase in dict_from_file['phases']:
 
         gameYear = seasonsDict[phase['orders'][0]['turn'] % 2] + ' '
         gameYear = gameYear + str(startYear + int(math.floor(phase['orders'][0]['turn'] / 2.0)))
+        gameYear = gameYear + ' ' + turnType
 
         game_turns.append([])
         currentTurn = game_turns[len(game_turns) - 1]
