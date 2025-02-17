@@ -1,14 +1,72 @@
-import json
 import math
 import requests
+import json
 
 #1111967 - 1
 
 wDKey = ''
-parameters = {'gameID' : 1349962, 'countryID' : '3'}
+gameID = 1349962
+countryID = '3'
+parameters = {'gameID' : gameID, 'countryID' : countryID}
 #header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
 cookie = {'wD-Key' : wDKey}
-dict_from_file = requests.get(url = 'https://webdiplomacy.net/api.php?route=game/status', params=parameters, cookies = cookie).json()
+dict_from_file = requests.get(url = 'https://webdiplomacy.net/api.php?route=game/status', params = parameters, cookies = cookie).json()
+'''
+test = json.dumps({
+    'gameID' : 1349962,
+    'turn' : 8,
+    'phase' : 'Diplomacy',
+    'countryID' : 3,
+    'orders' : [
+        {
+            "terrID": 62,
+            "unitType": "Fleet",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 12,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 8,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 63,
+            "unitType": "Fleet",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 15,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        }
+    ],
+    "ready": "No"
+})
+
+testPost = requests.post(url = 'https://webdiplomacy.net/api.php?route=game/orders', data = test, params=parameters, cookies = cookie)
+
+print(testPost)
+print(testPost.text)
+'''
 
 '''
 
@@ -85,7 +143,7 @@ terrList = [
     "MAO",
     "WES",
     "LYO",
-    "TYR",
+    "TYS",
     "ION",
     "ADR",
     "AEG",
@@ -103,6 +161,43 @@ terrList = [
     "STP (SC)",
     "BUL (NC)",
     "BUL (SC)"
+]
+
+supplyCenterList = [
+    "EDI",
+    "LVP",
+    "LON",
+    "POR",
+    "SPA",
+    "TUN",
+    "NAP",
+    "ROM",
+    "VEN",
+    "GRE",
+    "SER",
+    "BUL",
+    "RUM",
+    "CON",
+    "SMY",
+    "ANK",
+    "SEV",
+    "WAR",
+    "MOS",
+    "STP",
+    "SWE",
+    "NWY",
+    "DEN",
+    "KIE",
+    "BER",
+    "MUN",
+    "HOL",
+    "BEL",
+    "BRE",
+    "PAR",
+    "MAR",
+    "VIE",
+    "TRI",
+    "BUD",
 ]
 
 countryList = [
@@ -217,7 +312,6 @@ def retreatOrder(order):
 
 
 
-
 def compileReadableMovesSingleTurn(turnData):
     readableTurnData = turnData[len(turnData) - 1] + ' ' + '\n' #Current turn (Ex: Autumn 1902 Retreats)
 
@@ -233,7 +327,6 @@ def compileReadableMovesSingleTurn(turnData):
 
     return readableTurnData
 
-
 def compileReadableMovesFullGame(gameData):
     readableData = ''
     for turn in gameData:
@@ -241,7 +334,6 @@ def compileReadableMovesFullGame(gameData):
         readableData += '\n'
 
     return readableData
-
 
 
 def compileReadableFollowingTurn(followingData):
@@ -260,140 +352,189 @@ def compileReadableFollowingTurn(followingData):
     return readableTurnData
 
 
+'''
+def convertInputMovesToJSON(inputMoves): #Not functional until its possible to get the AI response as a JSON object
+    inputDict = inputMoves
+    inputDict['terrID'] = terrList.index(inputDict['terrID'])
+
+    if inputDict['toTerrID'] != "":
+        inputDict['toTerrID'] = terrList.index(inputDict['toTerrID'])
+
+    if inputDict['fromTerrID'] != "":
+        inputDict['fromTerrID'] = terrList.index(inputDict['fromTerrID'])
+
+    orders = [
+    {
+        "terrID": "KIE",
+        "unitType": "Fleet",
+        "type": "Move",
+        "toTerrID": "DEN",
+        "fromTerrID": "",
+        "viaConvoy": ""
+    },
+    {
+        "terrID": "BER",
+        "unitType": "Army",
+        "type": "Move",
+        "toTerrID": "KIE",
+        "fromTerrID": "",
+        "viaConvoy": ""
+    },
+    {
+        "terrID": "MUN",
+        "unitType": "Army",
+        "type": "Move",
+        "toTerrID": "RUH",
+        "fromTerrID": "",
+        "viaConvoy": ""
+    }
+    ]
+
+    movePostJSON = json.dumps({
+        'gameID': gameID,
+        'turn': 1,
+        'phase': 'Diplomacy',
+        'countryID': countryID,
+        'orders': inputDict,
+        'ready': 'Yes'})
+
+    requests.post(url='https://webdiplomacy.net/api.php?route=game/orders', data=movePostJSON, params=parameters,
+                             cookies=cookie)
+'''
 
 
 startYear = 1901
 game_turns = [] #List of all previous game turns
 following_turn = [] #List containing current turn information
 
-for phase in dict_from_file['phases']:
+#def getPreviousTurnData(phase, currentTurn): DO THIS LATER! Make separate functions for getting previous turns and getting current required moves
 
-    currentTurn = ''
+def getAllOrders():
+    for phase in dict_from_file['phases']:
 
-    if phase['orders'] != []: #On a live game the final turn is blank and throws an error
+        currentTurn = ''
 
-        turnType = phase['orders'][0]['phase'] #Diplomacy, Builds, Retreats
+        if phase['orders'] != []: #On a live game the final turn is blank and throws an error
 
-        gameYear = seasonsDict[phase['orders'][0]['turn'] % 2] + ' '
-        gameYear = gameYear + str(startYear + int(math.floor(phase['orders'][0]['turn'] / 2.0)))
-        gameYear = gameYear + ' ' + turnType
+            turnType = phase['orders'][0]['phase'] #Diplomacy, Builds, Retreats
 
-        game_turns.append([])
-        currentTurn = game_turns[len(game_turns) - 1]
+            gameYear = seasonsDict[phase['orders'][0]['turn'] % 2] + ' '
+            gameYear = gameYear + str(startYear + int(math.floor(phase['orders'][0]['turn'] / 2.0)))
+            gameYear = gameYear + ' ' + turnType
 
-        currentTurn.append({
-            'England' : [],
-            'France' : [],
-            'Italy' : [],
-            'Germany' : [],
-            'Austria' : [],
-            'Turkey' : [],
-            'Russia' : []
-            })
+            game_turns.append([])
+            currentTurn = game_turns[len(game_turns) - 1]
 
-        if turnType == 'Diplomacy':
-            for order in phase['orders']:
-                currentCountry = countryList[order['countryID']]
-                orderType = order['type']
+            currentTurn.append({
+                'England' : [],
+                'France' : [],
+                'Italy' : [],
+                'Germany' : [],
+                'Austria' : [],
+                'Turkey' : [],
+                'Russia' : []
+                })
 
-                if orderType == 'Hold':
-                    currentTurn[0][currentCountry].append(holdOrder(order))
+            if turnType == 'Diplomacy':
+                for order in phase['orders']:
+                    currentCountry = countryList[order['countryID']]
+                    orderType = order['type']
 
-                if orderType == 'Move':
-                    currentTurn[0][currentCountry].append(moveOrder(order))
+                    if orderType == 'Hold':
+                        currentTurn[0][currentCountry].append(holdOrder(order))
 
-                if orderType == 'Support Move':
-                    currentTurn[0][currentCountry].append(supportMoveOrder(order))
+                    if orderType == 'Move':
+                        currentTurn[0][currentCountry].append(moveOrder(order))
 
-                if orderType == 'Support Hold':
-                    currentTurn[0][currentCountry].append(supportHoldOrder(order))
+                    if orderType == 'Support Move':
+                        currentTurn[0][currentCountry].append(supportMoveOrder(order))
 
-                if orderType == 'Convoy':
-                    currentTurn[0][currentCountry].append(convoyOrder(order))
+                    if orderType == 'Support Hold':
+                        currentTurn[0][currentCountry].append(supportHoldOrder(order))
 
-        elif turnType == 'Retreats':
-            for order in phase['orders']:
-                currentCountry = countryList[order['countryID']]
+                    if orderType == 'Convoy':
+                        currentTurn[0][currentCountry].append(convoyOrder(order))
 
-                currentTurn[0][currentCountry].append(retreatOrder(order))
+            elif turnType == 'Retreats':
+                for order in phase['orders']:
+                    currentCountry = countryList[order['countryID']]
 
-        elif turnType == 'Builds':
-            for order in phase['orders']:
-                currentCountry = countryList[order['countryID']]
+                    currentTurn[0][currentCountry].append(retreatOrder(order))
 
-                currentTurn[0][currentCountry].append(buildOrder(order))
+            elif turnType == 'Builds':
+                for order in phase['orders']:
+                    currentCountry = countryList[order['countryID']]
 
-        currentTurn.append(gameYear)
+                    currentTurn[0][currentCountry].append(buildOrder(order))
 
+            currentTurn.append(gameYear)
 
-    elif phase['orders'] == []: #Gathers information on what players need to do on the current turn
-        followingTurnType = phase['phase']
+            '''
+            The following portion
+            '''
+        elif phase['orders'] == []: #Gathers information on what players need to do on the current turn
+            followingTurnType = phase['phase']
 
-        previousTurn = dict_from_file['phases'][len(dict_from_file['phases']) - 2]
+            previousTurn = dict_from_file['phases'][len(dict_from_file['phases']) - 1]
 
-        followingTurnOrders = {
-            'England': [],
-            'France': [],
-            'Italy': [],
-            'Germany': [],
-            'Austria': [],
-            'Turkey': [],
-            'Russia': []
-        }
+            followingTurnOrders = {
+                'England': [],
+                'France': [],
+                'Italy': [],
+                'Germany': [],
+                'Austria': [],
+                'Turkey': [],
+                'Russia': []
+            }
 
-        if (followingTurnType == 'Diplomacy'):
-            for unit in previousTurn['units']:
-                currentCountry = countryList[unit['countryID']]
-
-                unitType = unit['unitType']
-                unitSpace = terrList[unit['terrID']]
-
-                currentUnitFinal = unitType + ' ' + unitSpace + ', '
-                followingTurnOrders[currentCountry].append(currentUnitFinal)
-
-        elif (followingTurnType == 'Retreats'):
-
-            for unit in previousTurn['units']:
-
-                if (unit['retreating'] == 'Yes'):
+            if (followingTurnType == 'Diplomacy'):
+                for unit in previousTurn['units']:
                     currentCountry = countryList[unit['countryID']]
 
                     unitType = unit['unitType']
                     unitSpace = terrList[unit['terrID']]
 
-                    currentUnitFinal = unitType + ' ' + unitSpace + ' needs to retreat, '
+                    currentUnitFinal = unitType + ' ' + unitSpace + ', '
                     followingTurnOrders[currentCountry].append(currentUnitFinal)
 
-        elif (followingTurnType == 'Builds'):
+            elif (followingTurnType == 'Retreats'):
 
-            countryCenterCount = [0, 0, 0, 0, 0, 0, 0, 0] #First value is a placeholder
-            countryUnitCount = [0, 0, 0, 0, 0, 0, 0, 0] #First value is a placeholder
+                for unit in previousTurn['units']:
 
-            for center in previousTurn['centers']:
-                countryCenterCount[center['countryID']] += 1
+                    if (unit['retreating'] == 'Yes'):
+                        currentCountry = countryList[unit['countryID']]
 
-            for unit in previousTurn['units']:
-                countryUnitCount[unit['countryID']] += 1
+                        unitType = unit['unitType']
+                        unitSpace = terrList[unit['terrID']]
 
-            for i in range(7):
+                        currentUnitFinal = unitType + ' ' + unitSpace + ' needs to retreat, '
+                        followingTurnOrders[currentCountry].append(currentUnitFinal)
 
-                if (countryCenterCount[i + 1] - countryUnitCount[i + 1] < 0): #If a player has more units than centers
-                    followingTurnOrders[countryList[i + 1]].append('Must disband ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units')
+            elif (followingTurnType == 'Builds'):
 
-                elif (countryCenterCount[i + 1] - countryUnitCount[i + 1] > 0): #If a player has more centers than units
-                    followingTurnOrders[countryList[i + 1]].append(
-                        'Can build ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units on their home centers')
+                countryCenterCount = [0, 0, 0, 0, 0, 0, 0, 0] #First value is a placeholder
+                countryUnitCount = [0, 0, 0, 0, 0, 0, 0, 0] #First value is a placeholder
 
-            print(countryCenterCount)
-            print(countryUnitCount)
+                for center in previousTurn['centers']:
+                    if terrList[center['terrID']] in supplyCenterList:
+                        countryCenterCount[center['countryID']] += 1
 
-        following_turn.append(followingTurnOrders)
-        following_turn.append(followingTurnType)
+                for unit in previousTurn['units']:
+                    countryUnitCount[unit['countryID']] += 1
+
+                for i in range(7):
+
+                    if (countryCenterCount[i + 1] - countryUnitCount[i + 1] < 0): #If a player has more units than centers
+                        followingTurnOrders[countryList[i + 1]].append('Must disband ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units')
+
+                    elif (countryCenterCount[i + 1] - countryUnitCount[i + 1] > 0): #If a player has more centers than units
+                        followingTurnOrders[countryList[i + 1]].append(
+                            'Can build ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units on their home centers')
 
 
-
-
-
+            following_turn.append(followingTurnOrders)
+            following_turn.append(followingTurnType)
+getAllOrders()
 
 
 with open('MovesFormated.txt', 'w') as formattedFile:

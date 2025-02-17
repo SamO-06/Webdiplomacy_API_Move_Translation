@@ -1,0 +1,213 @@
+test = json.dumps({
+    'gameID' : 1349962,
+    'turn' : 8,
+    'phase' : 'Diplomacy',
+    'countryID' : 3,
+    'orders' : [
+        {
+            "terrID": 62,
+            "unitType": "Fleet",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 12,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 8,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 63,
+            "unitType": "Fleet",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        },
+        {
+            "terrID": 15,
+            "unitType": "Army",
+            "type": "Hold",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": "No"
+        }
+    ],
+    "ready": "No"
+})
+
+testPost = requests.post(url = 'https://webdiplomacy.net/api.php?route=game/orders', data = test, params=parameters, cookies = cookie)
+
+print(testPost)
+print(testPost.text)
+
+
+You are playing a game of the 1959 board game Diplomacy as POWERNAME. Your goal is to win the game.
+The game is beginning in Spring of 1901 in the standard position.
+
+After each turn, the moves of all players will be notated as follows, where COUNTRY is replaced with the game of the great power
+in question, SEASON will be the game season, PHASE will be the game phase (Diplomacy/moves, retreats, builds), YEAR will be the game
+year, and MOVE will be each respective move:
+SEASON YEAR, PHASE
+COUNTRY: MOVE, MOVE, MOVE
+COUNTRY: MOVE, MOVE, MOVE
+
+This will then be followed with information regarding what moves need to be input by each player. If your power, POWERNAME,
+is not listed, then you have no orders to input. The required moves will be notated as follows:
+PHASE
+Current phase required moves:
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+
+Please analyze the current position while taking into account the previous turns' moves, alliance structures, and general
+position of each unit, and then respond with the moves you wish to play. Format each unit's moves as follows, with
+TERRITORYNOTATION being the shorthand notation for the space on the game board (examples: VEN, ION, NWG), UNITTYPE
+being the type of unit (Fleet or Army), MOVETYPE being the type of move (Hold, Move, Support Hold, Support Move,
+Convoy, Retreat, Disband, Build), TOTERRITORYNOTATION being the target of the move if the unit in question is moving or the
+target of a supported unit's move or the location of a support held unit, FROMTERRITORYNOTATION being the location that a
+supported or convoyed unit is moving from, and ISCONVOYED being whether a move is via convoy (Yes or No). Please format
+each move as a Python dictionary object, with the information input as follows.
+
+If the order is a move or retreat order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": "ISCONVOYED"
+        }
+
+If the order is a hold order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support hold order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support move or convoy order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "FROMTERRITORYNOTATION",
+            "viaConvoy": ""
+        }
+
+If the order is a build or disband order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If your power has no moves required, respond with nothing.
+
+
+
+
+You are playing a game of the 1959 board game Diplomacy as POWERNAME. Your goal is to win the game. The game is beginning in Spring of 1901 in the standard position.
+
+After each turn, the moves of all players will be notated as follows, where COUNTRY is replaced with the game of the great power in question, SEASON will be the game season, PHASE will be the game phase (Diplomacy/moves, retreats, builds), YEAR will be the game year, and MOVE will be each respective move:
+SEASON YEAR, PHASE
+COUNTRY: MOVE, MOVE, MOVE
+COUNTRY: MOVE, MOVE, MOVE
+
+This will then be followed with information regarding what moves need to be input by each player. If your power, POWERNAME, is not listed, then you have no orders to input. The required moves will be notated as follows:
+PHASE
+Current phase required moves:
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+
+Please analyze the current position while taking into account the previous turns' moves, alliance structures, and general position of each unit, and then respond with the moves you wish to play. Format each unit's moves as follows, with TERRITORYNOTATION being the shorthand notation for the space on the game board (examples: VEN, ION, NWG), UNITTYPE being the type of unit (Fleet or Army), MOVETYPE being the type of move (Hold, Move, Support Hold, Support Move, Convoy, Retreat, Disband, Build), TOTERRITORYNOTATION being the target of the move if the unit in question is moving or the target of a supported unit's move or the location of a support held unit, FROMTERRITORYNOTATION being the location that a supported or convoyed unit is moving from, and ISCONVOYED being whether a move is via convoy (Yes or No). Please format each move as a Python dictionary object, with the information input as follows.
+
+If the order is a move or retreat order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": "ISCONVOYED"
+        }
+
+If the order is a hold order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support hold order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support move or convoy order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "FROMTERRITORYNOTATION",
+            "viaConvoy": ""
+        }
+
+If the order is a build or disband order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If POWERNAME has no moves required, respond with nothing. The current required moves are as follows. For all following responses respond with the formatted moves and nothing else.
+
+Diplomacy
+Current phase required moves:
+England: Fleet EDI, Army LVP, Fleet LON,
+France: Fleet BRE, Army PAR, Army MAR,
+Italy: Fleet NAP, Army ROM, Army VEN,
+Germany: Fleet KIE, Army BER, Army MUN,
+Austria: Army VIE, Fleet TRI, Army BUD,
+Turkey: Army CON, Army SMY, Fleet ANK,
+Russia: Fleet SEV, Army WAR, Army MOS, Fleet STP (SC),
+
+
+
+
+'You are playing a game of the 1959 board game Diplomacy as POWERNAME. Your goal is to win the game. '\
+'The game is beginning in Spring of 1901 in the standard position.\n\nAfter each turn, the moves of all '\
+'players will be notated as follows, where COUNTRY is replaced with the game of the great power '\
+'in question, SEASON will be the game season, PHASE will be the game phase (Diplomacy/moves, retreats, builds), '\
+'YEAR will be the game year, and MOVE will be each respective move:\nSEASON YEAR, PHASE\nCOUNTRY: MOVE, MOVE, MOVE\n'\
+'COUNTRY: MOVE, MOVE, MOVE\n\n'
