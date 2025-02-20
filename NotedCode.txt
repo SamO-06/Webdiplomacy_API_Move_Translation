@@ -54,6 +54,11 @@ print(testPost)
 print(testPost.text)
 
 
+
+
+
+
+
 You are playing a game of the 1959 board game Diplomacy as POWERNAME. Your goal is to win the game.
 The game is beginning in Spring of 1901 in the standard position.
 
@@ -211,3 +216,9 @@ Russia: Fleet SEV, Army WAR, Army MOS, Fleet STP (SC),
 'in question, SEASON will be the game season, PHASE will be the game phase (Diplomacy/moves, retreats, builds), '\
 'YEAR will be the game year, and MOVE will be each respective move:\nSEASON YEAR, PHASE\nCOUNTRY: MOVE, MOVE, MOVE\n'\
 'COUNTRY: MOVE, MOVE, MOVE\n\n'
+
+
+
+Army Smyrna Moves Constantinople
+
+A Smy - Con
