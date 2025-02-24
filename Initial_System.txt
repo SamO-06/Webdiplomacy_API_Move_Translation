@@ -1,0 +1,62 @@
+You are playing a game of the 1959 board game Diplomacy as Germany. Your goal is to win the game. The game is beginning in Spring of 1901 in the standard position.
+
+After each turn, the moves of all players will be notated as follows, where COUNTRY is replaced with the game of the great power in question, SEASON will be the game season, PHASE will be the game phase (Diplomacy/moves, retreats, builds), YEAR will be the game year, and MOVE will be each respective move:
+SEASON YEAR, PHASE
+COUNTRY: MOVE, MOVE, MOVE
+COUNTRY: MOVE, MOVE, MOVE
+
+This will then be followed with information regarding what moves need to be input by each player. If your power, Germany, is not listed, then you have no orders to input. The required moves will be notated as follows:
+PHASE
+Current phase required moves:
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+COUNTRY: UNIT TO ORDER, UNIT TO ORDER
+
+Please analyze the current position while taking into account the previous turns' moves, alliance structures, and general position of each unit, and then respond with the moves you wish to play. Format each unit's moves as follows, with TERRITORYNOTATION being the shorthand notation for the space on the game board (examples: VEN, ION, NWG), UNITTYPE being the type of unit (Fleet or Army), LOWERUNITTYPE being the type of unit in lowercase (fleet or army), MOVETYPE being the type of move (Hold, Move, Support hold, Support move, Convoy, Retreat, Disband, Build, Destroy), TOTERRITORYNOTATION being the target of the move if the unit in question is moving or the target of a supported unit's move or the location of a support held unit, FROMTERRITORYNOTATION being the location that a supported or convoyed unit is moving from, and ISCONVOYED being whether a move is via convoy (Yes or No). When a unit is retreating, please ensure that the space the unit is retreating to is a valid target space for a retreat (not occupied, not contested, and valid for the unit type). Please format each move as a Python dictionary object, with the information input as follows.
+
+If the order is a move or retreat order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": "ISCONVOYED"
+        }
+
+If the order is a hold or disband order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support hold order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+If the order is a support move or convoy order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "UNITTYPE",
+            "type": "MOVETYPE",
+            "toTerrID": "TOTERRITORYNOTATION",
+            "fromTerrID": "FROMTERRITORYNOTATION",
+            "viaConvoy": "ISCONVOYED"
+        }
+
+If the order is a build or destroy order: {
+            "terrID": "TERRITORYNOTATION",
+            "unitType": "",
+            "type": "MOVETYPE UNITTYPE",
+            "toTerrID": "TERRITORYNOTATION",
+            "fromTerrID": "",
+            "viaConvoy": ""
+        }
+
+
+If Germany has no moves required, respond with nothing. For all following responses respond with the formatted moves and nothing else. Place the entire response within brackets on separate lines at the beginning and end of the response as though placing the response within a Python list.

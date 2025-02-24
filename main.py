@@ -1,10 +1,12 @@
 import math
 import requests
 import time
+import anthropic
+import json
 
 
 wDKey = ''
-gameID = 1365747
+gameID = 1374267
 countryID = '4'
 parameters = {'gameID' : gameID, 'countryID' : countryID}
 #header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
@@ -276,7 +278,7 @@ def compileReadableMovesFullGame(gameData):
     return readableData
 
 def compileReadableFollowingTurn(followingData):
-    readableTurnData = followingData[len(followingData) - 1] + ' ' + '\n'  # Current turn (Ex: Autumn 1902 Retreats)
+    readableTurnData = followingData[len(followingData) - 2] + '\n'  # Current turn (Ex: Autumn 1902 Retreats)
     readableTurnData += 'Current phase required moves:\n'
 
     for i in range(7):
@@ -349,6 +351,7 @@ def formatPreviousTurn(phase, currentTurn):
 
 def formatCurrentMoves(phase, currentTurn):
     followingTurnType = phase['phase']
+    following_turn_number = phase['turn']
 
     previousTurn = dict_from_file['phases'][len(dict_from_file['phases']) - 1]
 
@@ -401,7 +404,7 @@ def formatCurrentMoves(phase, currentTurn):
 
             if (countryCenterCount[i + 1] - countryUnitCount[i + 1] < 0):  # If a player has more units than centers
                 followingTurnOrders[countryList[i + 1]].append(
-                    'Must disband ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units')
+                    'Must destroy ' + str(countryCenterCount[i + 1] - countryUnitCount[i + 1]) + ' units')
 
             elif (countryCenterCount[i + 1] - countryUnitCount[i + 1] > 0):  # If a player has more centers than units
                 followingTurnOrders[countryList[i + 1]].append(
@@ -410,6 +413,7 @@ def formatCurrentMoves(phase, currentTurn):
 
     following_turn.append(followingTurnOrders)
     following_turn.append(followingTurnType)
+    following_turn.append(following_turn_number)
 
 
 def formatPreviousAndCurrentMoves(game_turns, following_turn):
@@ -433,15 +437,70 @@ def getAllOrders():
 
 
 
-
-
 getAllOrders()
 
-with open('MovesFormated.txt', 'w') as formattedFile:
-    finalString = ''
+finalString = ''
+finalString = compileReadableMovesFullGame(game_turns)
+finalString = finalString + compileReadableFollowingTurn(following_turn)
 
-    finalString = compileReadableMovesFullGame(game_turns)
-    finalString = finalString + compileReadableFollowingTurn(following_turn)
-    #finalString += formatPreviousAndCurrentMoves(game_turns, following_turn)
 
-    formattedFile.write(finalString)
+initialSystem = ''
+with open('Initial_System.txt', 'r') as handle:
+    loopText = handle.readlines()
+
+    for line in loopText:
+        initialSystem += line
+
+    handle.close()
+
+
+client = anthropic.Anthropic(
+    # defaults to os.environ.get("ANTHROPIC_API_KEY")
+    api_key="",
+)
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    temperature= .6,
+    system = initialSystem,
+    messages=[
+        {"role": "user", "content": finalString}
+    ]
+)
+
+initialOrderList = json.loads(message.content[0].text)
+
+postDict = {
+    'gameID' : gameID,
+    'turn' : following_turn[2], #The current turn's number
+    'phase' : following_turn[1], #The current turn's type
+    'countryID' : countryID,
+    'orders' : [],
+    'ready' : 'Yes'
+}
+
+
+
+orderList = []
+
+for order in initialOrderList:
+    order['terrID'] = terrList.index(order['terrID'])
+
+    if order['toTerrID'] != "":
+        order['toTerrID'] = terrList.index(order['toTerrID'])
+
+    if order['fromTerrID'] != "":
+        order['fromTerrID'] = terrList.index(order['fromTerrID'])
+
+    orderList.append(order)
+
+postDict['orders'] = orderList
+
+postJSON = json.dumps(postDict)
+print(postJSON)
+
+movePost = requests.post(url = 'https://webdiplomacy.net/api.php?route=game/orders', data = postJSON, params=parameters, cookies = cookie)
+
+print(movePost.url)
+print(movePost)
+print(movePost.text)
