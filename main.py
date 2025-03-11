@@ -5,15 +5,6 @@ import anthropic
 import json
 
 
-wDKey = ''
-gameID = 1374267
-countryID = '4'
-parameters = {'gameID' : gameID, 'countryID' : countryID}
-#header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
-cookie = {'wD-Key' : wDKey}
-dict_from_file = requests.get(url = 'https://webdiplomacy.net/api.php?route=game/status', params = parameters, cookies = cookie).json()
-
-
 terrList = [
     0,
     "CLY",
@@ -161,11 +152,8 @@ moveSuccessDict = {'No' : ' (fails)', 'Yes' : ' (succeeds)'}
 
 seasonsDict = ['Spring', 'Autumn']
 convoyDict = {'Yes' : ' via convoy ', 'No' : ''}
-dislodgedDict = {'Yes'}
 
 startYear = 1901
-game_turns = [] #List of all previous game turns
-following_turn = [] #List containing current turn information
 
 
 #Unit Move Orders
@@ -424,8 +412,8 @@ def formatPreviousAndCurrentMoves(game_turns, following_turn):
 
 
 #Takes and formats all information about the game until the current point
-def getAllOrders():
-    for phase in dict_from_file['phases']:
+def getAllOrders(game):
+    for phase in game['phases']:
 
         currentTurn = ''
 
@@ -437,70 +425,105 @@ def getAllOrders():
 
 
 
-getAllOrders()
+wDKey = ''
+cookie = {'wD-Key' : wDKey}
 
-finalString = ''
-finalString = compileReadableMovesFullGame(game_turns)
-finalString = finalString + compileReadableFollowingTurn(following_turn)
+games_needing_moves = requests.get(url = 'https://webdiplomacy.net/api.php?route=players/missing_orders', cookies = cookie).json()
+print(games_needing_moves)
 
+for i in range(25):
+    print(i)
 
-initialSystem = ''
-with open('Initial_System.txt', 'r') as handle:
-    loopText = handle.readlines()
+    if (games_needing_moves != []):
 
-    for line in loopText:
-        initialSystem += line
+        initialSystem = '' #The system prompt for the AI
+        with open('Initial_System.txt', 'r') as handle:
+            loopText = handle.readlines()
 
-    handle.close()
+            for line in loopText:
+                initialSystem += line
 
-
-client = anthropic.Anthropic(
-    # defaults to os.environ.get("ANTHROPIC_API_KEY")
-    api_key="",
-)
-message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
-    max_tokens=1024,
-    temperature= .6,
-    system = initialSystem,
-    messages=[
-        {"role": "user", "content": finalString}
-    ]
-)
-
-initialOrderList = json.loads(message.content[0].text)
-
-postDict = {
-    'gameID' : gameID,
-    'turn' : following_turn[2], #The current turn's number
-    'phase' : following_turn[1], #The current turn's type
-    'countryID' : countryID,
-    'orders' : [],
-    'ready' : 'Yes'
-}
+            handle.close()
 
 
+        for game in games_needing_moves:
 
-orderList = []
+            game_turns = []  # List of all previous turns
+            following_turn = []  # List containing current turn information
 
-for order in initialOrderList:
-    order['terrID'] = terrList.index(order['terrID'])
+            gameID = game['gameID']
+            countryID = game['countryID']
+            parameters = {'gameID': gameID, 'countryID': countryID}
+            # header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
+            dict_from_file = requests.get(url='https://webdiplomacy.net/api.php?route=game/status', params=parameters,
+                                          cookies=cookie).json()
 
-    if order['toTerrID'] != "":
-        order['toTerrID'] = terrList.index(order['toTerrID'])
+            getAllOrders(dict_from_file)
 
-    if order['fromTerrID'] != "":
-        order['fromTerrID'] = terrList.index(order['fromTerrID'])
+            finalString = ''
+            finalString = compileReadableMovesFullGame(game_turns)
+            finalString = finalString + compileReadableFollowingTurn(following_turn)
 
-    orderList.append(order)
+            specificGameSystem = initialSystem.replace('PLAYEDGREATPOWER', countryList[countryID])
 
-postDict['orders'] = orderList
+            #print(specificGameSystem)
 
-postJSON = json.dumps(postDict)
-print(postJSON)
+            client = anthropic.Anthropic(
+                # defaults to os.environ.get("ANTHROPIC_API_KEY")
+                api_key="",
+            )
+            message = client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=1024,
+                temperature=.6,
+                system=specificGameSystem,
+                messages=[
+                    {"role": "user", "content": finalString}
+                ]
+            )
 
-movePost = requests.post(url = 'https://webdiplomacy.net/api.php?route=game/orders', data = postJSON, params=parameters, cookies = cookie)
+            initialOrderList = json.loads(message.content[0].text)
 
-print(movePost.url)
-print(movePost)
-print(movePost.text)
+            postDict = {
+                'gameID': gameID,
+                'turn': following_turn[2],  # The current turn's number
+                'phase': following_turn[1],  # The current turn's type
+                'countryID': countryID,
+                'orders': [],
+                'ready': 'Yes'
+            }
+
+            orderList = []
+
+            for order in initialOrderList:
+                order['terrID'] = terrList.index(order['terrID'])
+
+                if order['toTerrID'] != "":
+                    order['toTerrID'] = terrList.index(order['toTerrID'])
+
+                if order['fromTerrID'] != "":
+                    order['fromTerrID'] = terrList.index(order['fromTerrID'])
+
+                orderList.append(order)
+
+            postDict['orders'] = orderList
+
+            postJSON = json.dumps(postDict)
+            #print(postJSON)
+
+
+            movePost = requests.post(url='https://webdiplomacy.net/api.php?route=game/orders', data=postJSON,
+                                     params=parameters, cookies=cookie)
+
+            with open ('ComparePosts.txt', 'a') as handle:
+                handle.write(postJSON)
+                handle.write('\n')
+                handle.write(movePost.text)
+                handle.write('\n\n')
+
+            #print(movePost.text)
+            #print(movePost.url)
+            #print(movePost)
+
+    time.sleep(15)
+
