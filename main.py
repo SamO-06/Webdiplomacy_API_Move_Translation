@@ -128,7 +128,7 @@ supplyCenterList = [
 ]
 
 countryList = [
-    0,
+    'Uncontrolled', #This was 0, but is set as Uncontrolled for the getCurrentPosition function
     'England',
     'France',
     'Italy',
@@ -424,6 +424,98 @@ def getAllOrders(game):
             formatCurrentMoves(phase, currentTurn)
 
 
+def formatCurrentPosition(centerList, unitList):
+
+    '''
+
+    This function takes information about the current board state and reformats it to give the AI agent more
+    up-to-date information about the positions of units and status of centers around the board in order
+    to ensure the quality of responses from the agent does not decrease. The function returns a string.
+
+    '''
+
+    formattedPosition = 'Current position:\n'
+
+    formattedPosition += 'Controlled Centers:\n'
+    for country in countryList:
+
+        formattedPosition += (country + ': ')
+
+        for center in centerList[country]:
+            formattedPosition += (center + ', ')
+
+        formattedPosition += '\n'
+
+
+    formattedPosition += ('\n\nControlled units:\n')
+    for country in list(unitList.keys()):
+
+        formattedPosition += (country + ': ')
+
+        for unit in unitList[country]:
+            formattedPosition += (unit[0] + ' ' + unit[1] + ', ')
+
+        formattedPosition += '\n'
+
+    formattedPosition += '\n'
+    return formattedPosition
+
+
+
+def getCurrentPosition(position):
+
+    controlledSupplyCenters = {
+        'England': [],
+        'France': [],
+        'Italy': [],
+        'Germany': [],
+        'Austria': [],
+        'Turkey': [],
+        'Russia': [],
+        'Uncontrolled': []
+    }
+
+    controlledUnits = {
+        'England': [],
+        'France': [],
+        'Italy': [],
+        'Germany': [],
+        'Austria': [],
+        'Turkey': [],
+        'Russia': [],
+    }
+
+
+    for center in position['centers']:
+        if terrList[center['terrID']] in supplyCenterList:
+            controllingPower = '' #The text name of the power in control of a given center
+
+            controllingPower = countryList[center['countryID']]
+
+            controlledSupplyCenters[controllingPower].append(terrList[center['terrID']])
+
+            #Adds the center's text name to the given power's list
+            #If uncontrolled is added to the Uncontrolled list
+
+
+    for unit in position['units']:
+        controllingPower = ''   #The text name of the power in control of a given center
+        unitType = ''   #Army or Fleet
+        occupiedSpace = 0   #TerrID
+
+        controllingPower = countryList[unit['countryID']]
+        unitType = unit['unitType']
+        occupiedSpace = terrList[unit['terrID']]
+
+        unitInformation = [unitType, occupiedSpace]
+
+        controlledUnits[controllingPower].append(unitInformation)
+
+
+    return formatCurrentPosition(controlledSupplyCenters, controlledUnits)
+
+
+
 
 wDKey = ''
 cookie = {'wD-Key' : wDKey}
@@ -431,8 +523,8 @@ cookie = {'wD-Key' : wDKey}
 games_needing_moves = requests.get(url = 'https://webdiplomacy.net/api.php?route=players/missing_orders', cookies = cookie).json()
 print(games_needing_moves)
 
-for i in range(25):
-    print(i)
+for i in range(30):
+
 
     if (games_needing_moves != []):
 
@@ -461,13 +553,17 @@ for i in range(25):
             getAllOrders(dict_from_file)
 
             finalString = ''
+
             finalString = compileReadableMovesFullGame(game_turns)
+            finalString = finalString + getCurrentPosition(dict_from_file['phases'][len(dict_from_file['phases']) - 1]) #THIS IS A TEST CASE
             finalString = finalString + compileReadableFollowingTurn(following_turn)
+            print(finalString)
 
             specificGameSystem = initialSystem.replace('PLAYEDGREATPOWER', countryList[countryID])
 
             #print(specificGameSystem)
 
+            print(i)
             client = anthropic.Anthropic(
                 # defaults to os.environ.get("ANTHROPIC_API_KEY")
                 api_key="",
@@ -475,7 +571,7 @@ for i in range(25):
             message = client.messages.create(
                 model="claude-3-5-sonnet-20241022",
                 max_tokens=1024,
-                temperature=.6,
+                temperature=.7, #Normally .6
                 system=specificGameSystem,
                 messages=[
                     {"role": "user", "content": finalString}
@@ -495,6 +591,10 @@ for i in range(25):
 
             orderList = []
 
+            tempConvoyDict = {}   #This is a bandaid fix for the convoyPath issue and will be used assuming
+                                    #There is not, in fact, an API call that can generate it.
+                                    #Is a dictionary with convoy paths using the army terrID as the key
+
             for order in initialOrderList:
                 order['terrID'] = terrList.index(order['terrID'])
 
@@ -504,7 +604,20 @@ for i in range(25):
                 if order['fromTerrID'] != "":
                     order['fromTerrID'] = terrList.index(order['fromTerrID'])
 
+                if order['type'] == 'Convoy': #Part of the bandaid fix
+                    order['convoyPath'] = [(order['fromTerrID']), order['terrID']]
+                    tempConvoyDict[order['fromTerrID']] = order['convoyPath']
+
+
                 orderList.append(order)
+
+
+            for order in initialOrderList: #Part of the bandaid fix; fills in move orders' convoyPath variable
+                if order['viaConvoy'] == 'Yes':
+
+                    if order['terrID'] in tempConvoyDict.keys(): #If the army has an associated convoyPath
+                        order['convoyPath'] = tempConvoyDict[order['terrID']]
+
 
             postDict['orders'] = orderList
 

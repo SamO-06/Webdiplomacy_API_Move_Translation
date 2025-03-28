@@ -11,7 +11,16 @@ Current phase required moves:
 COUNTRY: UNIT TO ORDER, UNIT TO ORDER
 COUNTRY: UNIT TO ORDER, UNIT TO ORDER
 
-Please analyze the current position while taking into account the previous turns' moves, alliance structures, and general position of each unit, and then respond with the moves you wish to play. Format each unit's moves as follows, with TERRITORYNOTATION being the shorthand notation for the space on the game board (examples: VEN, ION, NWG, STP (SC), BUL (NC)), UNITTYPE being the type of unit (Fleet or Army), LOWERUNITTYPE being the type of unit in lowercase (fleet or army), MOVETYPE being the type of move (Hold, Move, Support hold, Support move, Convoy, Retreat, Disband, Build, Destroy), TOTERRITORYNOTATION being the target of the move if the unit in question is moving or the target of a supported unit's move or the location of a support held unit, FROMTERRITORYNOTATION being the location that a supported or convoyed unit is moving from, and ISCONVOYED being whether a move is via convoy (Yes or No). When a unit is retreating, please ensure that the space the unit is retreating to is a valid target space for a retreat (not occupied, not contested, and valid for the unit type). Please format each move as a Python dictionary object, with the information input as follows.
+This will then be followed by information regarding what the current position is. The current position will be notated as follows:
+Current position:
+Controlled Centers:
+COUNTRY: CENTER, CENTER
+COUNTRY: CENTER, CENTER
+Controlled Units:
+COUNTRY: UNITTYPE TERRITORYNOTATION, UNITTYPE TERRITORYNOTATION
+COUNTRY: UNITTYPE TERRITORYNOTATION, UNITTYPE TERRITORYNOTATION
+
+Please analyze the current position while taking into account the previous turns' moves, alliance structures, and general position of each unit, and then respond with the moves you wish to play. Format each unit's moves as follows, with TERRITORYNOTATION being the shorthand notation for the space on the game board that the ordered unit occupies (examples: VEN, ION, NWG, STP (SC), BUL (NC)), UNITTYPE being the type of unit (Fleet or Army), MOVETYPE being the type of move (Hold, Move, Support hold, Support move, Convoy, Retreat, Disband, Build, Destroy), TOTERRITORYNOTATION being the target of the move if the unit in question is moving or the target of a supported unit's move or the location of a unit that is being support held, FROMTERRITORYNOTATION being the location that a supported or convoyed unit is moving from, and ISCONVOYED being whether a move is via convoy (Yes or No). When a unit is retreating, please ensure that the space the unit is retreating to is a valid target space for a retreat (not occupied, not contested, and valid for the unit type). Please format each move as a Python dictionary object, with the information input as follows.
 
 If the order is a move or retreat order: {
             "terrID": "TERRITORYNOTATION",

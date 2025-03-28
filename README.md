@@ -3,7 +3,7 @@ Diplomacy is a classic turn based strategy game from 1959 that has been the subj
 This project aims to create a bot to play the game using new AI tools in conjunction with the online platform
 WebDiplomacy.net.
 
-<h1>Important Note</h1>
+<h1>Important Usage Note</h1>
 The developer of this project was given explicit permission from the owner of WebDiplomacy to use the site
 in the way that this project does. It is directly against the website's rules to use your WebDiplomacy
 cookie to send in moves on your account, and a special bot API key is to be provided by the owner to those
