@@ -1,52 +1,115 @@
 Spring 1901 Diplomacy 
-England: Fleet LON - NTH (succeeds), Army LVP - YOR (succeeds), Fleet EDI - NWG (succeeds), 
-France: Army MAR - BUR (succeeds), Army PAR - GAS (succeeds), Fleet BRE - MAO (succeeds), 
-Italy: Fleet NAP - ION (succeeds), Army ROM - VEN (succeeds), Army VEN - TYR (succeeds), 
-Germany: Fleet KIE - DEN (succeeds), Army BER - KIE (succeeds), Army MUN - RUH (succeeds), 
-Austria: Army BUD - SER (succeeds), Fleet TRI - ALB (succeeds), Army VIE - GAL (fails), 
-Turkey: Army CON - BUL (succeeds), Fleet ANK - BLA (fails), Army SMY - CON (succeeds), 
-Russia: Fleet SEV - BLA (fails), Army WAR - GAL (fails), Fleet STP (SC) - BOT (succeeds), Army MOS - UKR (succeeds), 
+England: Fleet LON - NTH (succeeds), Army LVP - EDI (succeeds), Fleet EDI - NWG (succeeds), 
+France: Army MAR - SPA (succeeds), Army PAR - BUR (succeeds), Fleet BRE - ENG (succeeds), 
+Italy: Fleet NAP - ION (succeeds), Army ROM - APU (succeeds), Army VEN - PIE (succeeds), 
+Germany: Fleet KIE - HOL (succeeds), Army BER - KIE (succeeds), Army MUN - RUH (succeeds), 
+Austria: Army BUD - TRI (succeeds), Fleet TRI - ALB (succeeds), Army VIE - TYR (succeeds), 
+Turkey: Army CON - BUL (succeeds), Fleet ANK - BLA (fails), Army SMY - ARM (succeeds), 
+Russia: Fleet SEV - BLA (fails), Army WAR - GAL (succeeds), Fleet STP (SC) - BOT (succeeds), Army MOS - UKR (succeeds), 
 
 Autumn 1901 Diplomacy 
-England: Army YOR - BEL via convoy  (fails), Fleet NWG - NWY (succeeds), Fleet NTH C YOR - BEL (fails), 
-France: Army BUR - BEL (fails), Army GAS - SPA (succeeds), Fleet MAO - POR (succeeds), 
-Italy: Fleet ION - TUN (succeeds), Army VEN - TYR (succeeds), Army TYR - BOH (succeeds), 
-Germany: Fleet DEN hold (fails), Army KIE - HOL (succeeds), Army RUH - BEL (fails), 
-Austria: Army VIE - TRI (succeeds), Fleet ALB - GRE (fails), 
-Turkey: Army BUL - GRE (fails), Fleet ANK - BLA (succeeds), Army CON - BUL (fails), 
-Russia: Fleet SEV - RUM (succeeds), Army WAR - GAL (succeeds), Fleet BOT - SWE (succeeds), 
+England: Fleet NTH - LON (succeeds), Army EDI - NWY via convoy  (succeeds), Fleet NWG C EDI - NWY (succeeds), 
+France: Army SPA hold (fails), Army BUR - BEL (fails), 
+Italy: Fleet ION - TUN (succeeds), Army APU - VEN (succeeds), 
+Germany: Army RUH - BEL (fails), Army KIE - DEN (succeeds), 
+Austria: Army TYR - VIE (succeeds), Fleet ALB - GRE (succeeds), Army TRI - SER (succeeds), 
+Turkey: Army BUL - RUM (fails), Fleet ANK - BLA (fails), Army ARM - SEV (fails), 
+Russia: Fleet SEV - BLA (fails), Fleet BOT - SWE (succeeds), Army UKR - RUM (succeeds), 
 
 Autumn 1901 Builds 
-England: Build Fleet LON, 
-France: Build Army PAR, Build Fleet BRE, 
-Italy: Build Army VEN, 
-Germany: Build Army BER, Build Army MUN, 
-Austria: Build Army BUD, 
-Turkey: Build Fleet SMY, 
-Russia: Build Fleet STP (NC), Build Fleet SEV, 
+England: Build Fleet EDI, 
+France: Build Fleet MAR, 
+Italy: Build Fleet NAP, 
+Germany: Build Army MUN, Build Fleet KIE, 
+Austria: Build Army TRI, Build Army BUD, 
+Turkey: Build Fleet CON, 
+Russia: Build Army STP, Build Army MOS, 
 
 Spring 1902 Diplomacy 
-England: Army YOR hold (fails), Fleet NWY hold (fails), Fleet LON - ENG (fails), 
-France: Fleet BRE - ENG (fails), Army PAR - PIC (succeeds), Army BUR - BEL (fails), Army SPA - GAS (succeeds), Fleet POR - MAO (succeeds), 
-Italy: Army VEN - TRI (fails), Fleet TUN - ION (succeeds), Army BOH - VIE (fails), 
-Germany: Army MUN - BUR (succeeds), Army HOL - BEL (fails), Army BER - KIE (succeeds), 
-Austria: Army TRI - VIE (fails), Fleet ALB - TRI (fails), 
-Turkey: Fleet SMY - AEG (succeeds), Army BUL - RUM (fails), Army CON - BUL (fails), 
-Russia: Fleet STP (NC) - NWY (fails), Fleet RUM - BLA (succeeds), Army UKR - RUM (succeeds), 
+England: Army NWY hold (fails), Fleet EDI - NTH (succeeds), 
+France: Army SPA hold (fails), Fleet ENG - BEL (fails), Fleet MAR - LYO (succeeds), 
+Italy: Fleet NAP - TYS (succeeds), Fleet TUN - WES (succeeds), Army PIE - MAR (succeeds), 
+Germany: Army DEN hold (fails), Fleet KIE - BAL (succeeds), Army MUN - BUR (succeeds), Fleet HOL - BEL (fails), 
+Austria: Army VIE - GAL (succeeds), Army TRI - SER (succeeds), Army SER - BUL (succeeds), 
+Turkey: Army BUL - RUM (fails), Fleet ANK - BLA (succeeds), Army ARM - SEV (fails), 
+Russia: Fleet SEV - BLA (fails), Army MOS - UKR (succeeds), Fleet SWE - NWY (fails), 
 
 Spring 1902 Retreats 
-France: Army BUR retreat to MAR (succeeds), 
-Turkey: Fleet BLA retreat to ANK (succeeds), 
+France: Army BUR retreat to PIC (succeeds), 
+Turkey: Army BUL disband, 
+Russia: Army GAL retreat to WAR (succeeds), 
 
 Autumn 1902 Diplomacy 
-England: Fleet NWY hold (fails), Army YOR hold (fails), Fleet LON - ENG (fails), 
-France: Fleet BRE - ENG (succeeds), Army PIC - PAR (fails), Army MAR - BUR (fails), Army GAS - PAR (fails), 
-Italy: Army VEN - TRI (fails), Fleet ION - ALB (fails), Army BOH - VIE (succeeds), 
-Germany: Army HOL - BEL (succeeds), Fleet DEN - SWE (fails), Army KIE - DEN (fails), 
-Austria: Army TRI - VIE (fails), Fleet ALB - TRI (fails), 
-Turkey: Fleet AEG - GRE (succeeds), Fleet ANK - BLA (fails), 
-Russia: Fleet SEV - ARM (succeeds), Fleet STP (NC) - NWY (fails), Army GAL - BUD (succeeds), 
+England: Army NWY hold (fails), Fleet LON - ENG (succeeds), 
+France: Army SPA hold (fails), Fleet LYO - TYS (fails), Army PIC - BEL (fails), 
+Italy: Army VEN - PIE (succeeds), Army MAR - SPA (succeeds), Fleet TYS - LYO (fails), 
+Germany: Fleet BAL - SWE (succeeds), Army BUR - PAR (succeeds), Army RUH - BEL (succeeds), 
+Austria: Army GAL - RUM (succeeds), 
+Turkey: Army ARM - SEV (succeeds), Fleet CON - AEG (succeeds), 
+Russia: Army WAR - GAL (succeeds), Fleet SWE - NWY (fails), 
 
-Retreats 
+Autumn 1902 Retreats 
+France: Army SPA retreat to GAS (succeeds), Fleet ENG retreat to BRE (succeeds), 
+Russia: Fleet SWE retreat to BOT (succeeds), Army RUM disband, Fleet SEV disband, 
+
+Autumn 1902 Builds 
+France: Destroy PIC, Destroy LYO, 
+Italy: Build Fleet NAP, 
+Germany: Build Army MUN, Build Army BER, Build Fleet KIE, 
+Austria: Build Army VIE, Build Fleet TRI, 
+Turkey: Build Fleet SMY, 
+Russia: Destroy BOT, 
+
+Spring 1903 Diplomacy 
+England: Army NWY hold (fails), Fleet NTH - ENG (fails), Fleet ENG - MAO (fails), Fleet NWG - NTH (fails), 
+France: Fleet BRE - MAO (fails), Army GAS - MAR (fails), 
+Italy: Fleet NAP - TYS (succeeds), Fleet TYS - LYO (succeeds), Fleet WES - SPA (SC) (succeeds), Army PIE - MAR (fails), Army SPA - POR (succeeds), 
+Germany: Fleet SWE - SKA (succeeds), Army BEL - PIC (succeeds), Army DEN - SWE (succeeds), Fleet HOL - NTH (fails), Army BER - PRU (succeeds), Army MUN - BUR (succeeds), Fleet KIE - DEN (succeeds), 
+Austria: Army VIE - GAL (succeeds), Fleet TRI - ALB (succeeds), 
+Turkey: Fleet SMY - CON (succeeds), Fleet AEG - GRE (fails), Fleet BLA - RUM (fails), 
+Russia: Army STP - MOS (succeeds), Army GAL - RUM (fails), 
+
+Spring 1903 Retreats 
+Russia: Army GAL retreat to WAR (succeeds), 
+
+Autumn 1903 Diplomacy 
+England: Army NWY hold (fails), Fleet NTH - BEL (succeeds), 
+France: Fleet BRE - MAO (succeeds), Army GAS - SPA (fails), 
+Italy: Army POR hold (fails), Fleet TYS - WES (succeeds), Army PIE - MAR (succeeds), 
+Germany: Army BUR - GAS (fails), Army PRU - LVN (succeeds), Army PIC - BRE (succeeds), Army SWE - NWY (fails), Fleet DEN - NTH (succeeds), 
+Austria: Fleet ALB - ION (succeeds), 
+Turkey: Army SEV - RUM (fails), Fleet CON - BUL (SC) (fails), 
+Russia: Army MOS - SEV (succeeds), Army WAR - GAL (fails), 
+
+Autumn 1903 Retreats 
+Turkey: Army SEV retreat to ARM (succeeds), 
+
+Autumn 1903 Builds 
+England: Build Fleet EDI, 
+France: Destroy MAO, Destroy GAS, 
+Italy: Build Army VEN, Build Fleet NAP, 
+Turkey: Destroy ARM, 
+Russia: Build Army STP, 
+
+Current position:
+Controlled Centers:
+Uncontrolled: 
+England: BEL, NWY, LON, LVP, EDI, 
+France: 
+Italy: MAR, VEN, ROM, NAP, TUN, SPA, POR, 
+Germany: PAR, BRE, HOL, MUN, BER, KIE, DEN, SWE, 
+Austria: BUD, TRI, VIE, RUM, BUL, SER, GRE, 
+Turkey: ANK, SMY, CON, 
+Russia: STP, MOS, WAR, SEV, 
+
+Controlled units:
+England: Army NWY, Fleet NWG, Fleet ENG, Fleet BEL, Fleet EDI, 
+France: 
+Italy: Army POR, Fleet SPA (SC), Fleet LYO, Fleet WES, Army MAR, Army VEN, Fleet NAP, 
+Germany: Army BUR, Army SWE, Fleet SKA, Army PAR, Fleet HOL, Army LVN, Army BRE, Fleet NTH, 
+Austria: Army BUL, Army GAL, Army SER, Army RUM, Fleet GRE, Army BUD, Fleet ION, 
+Turkey: Fleet CON, Fleet AEG, Fleet BLA, 
+Russia: Army WAR, Army UKR, Army SEV, Army STP, 
+
+Finished
 Current phase required moves:
-Austria: Army BUD needs to retreat, 

@@ -4,6 +4,8 @@ import time
 import anthropic
 import json
 
+import positionStatus
+
 
 terrList = [
     0,
@@ -447,7 +449,7 @@ def formatCurrentPosition(centerList, unitList):
         formattedPosition += '\n'
 
 
-    formattedPosition += ('\n\nControlled units:\n')
+    formattedPosition += ('\nControlled units:\n')
     for country in list(unitList.keys()):
 
         formattedPosition += (country + ': ')
@@ -520,10 +522,12 @@ def getCurrentPosition(position):
 wDKey = ''
 cookie = {'wD-Key' : wDKey}
 
-games_needing_moves = requests.get(url = 'https://webdiplomacy.net/api.php?route=players/missing_orders', cookies = cookie).json()
-print(games_needing_moves)
-
 for i in range(30):
+
+    games_needing_moves = requests.get(url='https://webdiplomacy.net/api.php?route=players/missing_orders',
+                                       cookies=cookie).json()
+    for game in games_needing_moves:
+        positionStatus.initializeGamePositionStatus(game['gameID'], countryList[game['countryID']])
 
 
     if (games_needing_moves != []):
@@ -539,6 +543,14 @@ for i in range(30):
 
 
         for game in games_needing_moves:
+
+            '''
+            NOTE TO FUTURE SELF:
+            
+            Continue work on positionStatus.py and its associated systems, determine a way to get Claude
+            to give a basic status of a given game's position and format it properly here
+            '''
+
 
             game_turns = []  # List of all previous turns
             following_turn = []  # List containing current turn information
@@ -557,7 +569,7 @@ for i in range(30):
             finalString = compileReadableMovesFullGame(game_turns)
             finalString = finalString + getCurrentPosition(dict_from_file['phases'][len(dict_from_file['phases']) - 1]) #THIS IS A TEST CASE
             finalString = finalString + compileReadableFollowingTurn(following_turn)
-            print(finalString)
+            #print(finalString)
 
             specificGameSystem = initialSystem.replace('PLAYEDGREATPOWER', countryList[countryID])
 
@@ -569,14 +581,18 @@ for i in range(30):
                 api_key="",
             )
             message = client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-3-7-sonnet-20250219",
                 max_tokens=1024,
-                temperature=.7, #Normally .6
+                temperature=.75, #Normally .6
                 system=specificGameSystem,
                 messages=[
                     {"role": "user", "content": finalString}
                 ]
             )
+
+            with open('MovesFormated.txt', 'w') as handle:
+                handle.write(finalString)
+                handle.close()
 
             initialOrderList = json.loads(message.content[0].text)
 
