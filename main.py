@@ -3,9 +3,10 @@ import requests
 import time
 import anthropic
 import json
-
+import orderTranslation
 import positionStatus
-
+import diplomacyGameInstance
+import os
 
 terrList = [
     0,
@@ -130,7 +131,7 @@ supplyCenterList = [
 ]
 
 countryList = [
-    'Uncontrolled', #This was 0, but is set as Uncontrolled for the getCurrentPosition function
+    0,
     'England',
     'France',
     'Italy',
@@ -156,90 +157,6 @@ seasonsDict = ['Spring', 'Autumn']
 convoyDict = {'Yes' : ' via convoy ', 'No' : ''}
 
 startYear = 1901
-
-
-#Unit Move Orders
-def holdOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-    dislodged = order['dislodged']
-
-    formattedMove = (unitType + ' ' + occupiedTerritory + ' ' + 'hold' + moveSucceeds)
-
-    return formattedMove
-
-def moveOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    #print(order['toTerrID'])
-    moveTargetTerritory = terrList[order['toTerrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-    viaConvoy = convoyDict[order['viaConvoy']]
-
-
-    formattedMove = (unitType + ' ' + occupiedTerritory + ' - ' + moveTargetTerritory + viaConvoy + moveSucceeds)
-
-    return formattedMove
-
-def supportMoveOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    supportedUnitTargetSpace = terrList[order['toTerrID']]
-    supportedUnitOccupiedSpace = terrList[order['fromTerrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-
-    formattedMove = (unitType + ' ' + occupiedTerritory + ' S ' + supportedUnitOccupiedSpace + ' - ' + supportedUnitTargetSpace + moveSucceeds)
-
-    return formattedMove
-
-def supportHoldOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    supportedUnitOccupiedSpace = terrList[order['fromTerrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-
-    formattedMove = (unitType + ' ' + occupiedTerritory + ' S ' + supportedUnitOccupiedSpace + ' Hold' + moveSucceeds)
-
-    return formattedMove
-
-def convoyOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    convoyedUnitTargetSpace = terrList[order['toTerrID']]
-    convoyedUnitOccupiedSpace = terrList[order['fromTerrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-
-    formattedMove = (unitType + ' ' + occupiedTerritory + ' C ' + convoyedUnitOccupiedSpace + ' - ' + convoyedUnitTargetSpace + moveSucceeds)
-
-    return formattedMove
-
-
-#Unit Build Orders
-def buildOrder(order):
-    buildType = order['type']
-    buildOrderSpace = terrList[order['terrID']]
-
-    formattedMove = (buildType + ' ' + buildOrderSpace)
-
-    return formattedMove
-
-
-#Unit Retreat Orders
-def retreatOrder(order):
-    unitType = order['unitType']
-    occupiedTerritory = terrList[order['terrID']]
-    retreatTargetTerritory = terrList[order['toTerrID']]
-    moveSucceeds = moveSuccessDict[order['success']]
-
-    formattedMove = unitType + ' ' + occupiedTerritory
-    if (order['type'] == 'Disband'):
-        formattedMove = formattedMove + ' disband'
-
-    else:
-        formattedMove = formattedMove + ' retreat to ' + retreatTargetTerritory + moveSucceeds
-
-    return formattedMove
 
 
 
@@ -285,7 +202,7 @@ def compileReadableFollowingTurn(followingData):
 
 
 #Formats the original JSON data into lists of readable move data
-def formatPreviousTurn(phase, currentTurn):
+def formatPreviousTurn(phase):
     turnType = phase['orders'][0]['phase']  # Diplomacy, Builds, Retreats
 
     gameYear = seasonsDict[phase['orders'][0]['turn'] % 2] + ' '
@@ -293,9 +210,9 @@ def formatPreviousTurn(phase, currentTurn):
     gameYear = gameYear + ' ' + turnType
 
     game_turns.append([])
-    currentTurn = game_turns[len(game_turns) - 1]
+    turnBeingFormatted = game_turns[len(game_turns) - 1]
 
-    currentTurn.append({
+    turnBeingFormatted.append({
         'England': [],
         'France': [],
         'Italy': [],
@@ -311,39 +228,37 @@ def formatPreviousTurn(phase, currentTurn):
             orderType = order['type']
 
             if orderType == 'Hold':
-                currentTurn[0][currentCountry].append(holdOrder(order))
+                turnBeingFormatted[0][currentCountry].append(orderTranslation.holdOrder(order))
 
             if orderType == 'Move':
-                currentTurn[0][currentCountry].append(moveOrder(order))
+                turnBeingFormatted[0][currentCountry].append(orderTranslation.moveOrder(order))
 
             if orderType == 'Support Move':
-                currentTurn[0][currentCountry].append(supportMoveOrder(order))
+                turnBeingFormatted[0][currentCountry].append(orderTranslation.supportMoveOrder(order))
 
             if orderType == 'Support Hold':
-                currentTurn[0][currentCountry].append(supportHoldOrder(order))
+                turnBeingFormatted[0][currentCountry].append(orderTranslation.supportHoldOrder(order))
 
             if orderType == 'Convoy':
-                currentTurn[0][currentCountry].append(convoyOrder(order))
+                turnBeingFormatted[0][currentCountry].append(orderTranslation.convoyOrder(order))
 
     elif turnType == 'Retreats':
         for order in phase['orders']:
             currentCountry = countryList[order['countryID']]
 
-            currentTurn[0][currentCountry].append(retreatOrder(order))
+            turnBeingFormatted[0][currentCountry].append(orderTranslation.retreatOrder(order))
 
     elif turnType == 'Builds':
         for order in phase['orders']:
             currentCountry = countryList[order['countryID']]
 
-            currentTurn[0][currentCountry].append(buildOrder(order))
+            turnBeingFormatted[0][currentCountry].append(orderTranslation.buildOrder(order))
 
-    currentTurn.append(gameYear)
+    turnBeingFormatted.append(gameYear)
 
-def formatCurrentMoves(phase, currentTurn):
+def formatCurrentMoves(phase, previousTurn):
     followingTurnType = phase['phase']
     following_turn_number = phase['turn']
-
-    previousTurn = dict_from_file['phases'][len(dict_from_file['phases']) - 1]
 
     followingTurnOrders = {
         'England': [],
@@ -414,121 +329,39 @@ def formatPreviousAndCurrentMoves(game_turns, following_turn):
 
 
 #Takes and formats all information about the game until the current point
-def getAllOrders(game):
-    for phase in game['phases']:
-
-        currentTurn = ''
+def formatAllGameTurnData(game):
+    #Populates the game_turns and following_turn lists
+    for i in range(len(game['phases'])):
+        phase = game['phases'][i]
 
         if phase['orders'] != []: #On a live game the final turn is blank and throws an error
-            formatPreviousTurn(phase, currentTurn)
+            formatPreviousTurn(phase)
 
         elif phase['orders'] == []: #Gathers information on what players need to do on the current turn
-            formatCurrentMoves(phase, currentTurn)
+            formatCurrentMoves(phase, game['phases'][i]) #passes information about current phase and the previous phase's data
+                                                #This was i-1 previously. Not sure why it changed (29/4)
 
 
-def formatCurrentPosition(centerList, unitList):
-
-    '''
-
-    This function takes information about the current board state and reformats it to give the AI agent more
-    up-to-date information about the positions of units and status of centers around the board in order
-    to ensure the quality of responses from the agent does not decrease. The function returns a string.
-
-    '''
-
-    formattedPosition = 'Current position:\n'
-
-    formattedPosition += 'Controlled Centers:\n'
-    for country in countryList:
-
-        formattedPosition += (country + ': ')
-
-        for center in centerList[country]:
-            formattedPosition += (center + ', ')
-
-        formattedPosition += '\n'
+            '''
+            Currently is bugged regarding detecting whether a game has already been saved in the past or not, causing
+            the new statuses to just be saved as "The game is in it's starting position." every time.
+            '''
 
 
-    formattedPosition += ('\nControlled units:\n')
-    for country in list(unitList.keys()):
-
-        formattedPosition += (country + ': ')
-
-        for unit in unitList[country]:
-            formattedPosition += (unit[0] + ' ' + unit[1] + ', ')
-
-        formattedPosition += '\n'
-
-    formattedPosition += '\n'
-    return formattedPosition
-
-
-
-def getCurrentPosition(position):
-
-    controlledSupplyCenters = {
-        'England': [],
-        'France': [],
-        'Italy': [],
-        'Germany': [],
-        'Austria': [],
-        'Turkey': [],
-        'Russia': [],
-        'Uncontrolled': []
-    }
-
-    controlledUnits = {
-        'England': [],
-        'France': [],
-        'Italy': [],
-        'Germany': [],
-        'Austria': [],
-        'Turkey': [],
-        'Russia': [],
-    }
-
-
-    for center in position['centers']:
-        if terrList[center['terrID']] in supplyCenterList:
-            controllingPower = '' #The text name of the power in control of a given center
-
-            controllingPower = countryList[center['countryID']]
-
-            controlledSupplyCenters[controllingPower].append(terrList[center['terrID']])
-
-            #Adds the center's text name to the given power's list
-            #If uncontrolled is added to the Uncontrolled list
-
-
-    for unit in position['units']:
-        controllingPower = ''   #The text name of the power in control of a given center
-        unitType = ''   #Army or Fleet
-        occupiedSpace = 0   #TerrID
-
-        controllingPower = countryList[unit['countryID']]
-        unitType = unit['unitType']
-        occupiedSpace = terrList[unit['terrID']]
-
-        unitInformation = [unitType, occupiedSpace]
-
-        controlledUnits[controllingPower].append(unitInformation)
-
-
-    return formatCurrentPosition(controlledSupplyCenters, controlledUnits)
-
-
-
-
-wDKey = ''
+wDKey = os.getenv("wDKey")
 cookie = {'wD-Key' : wDKey}
 
-for i in range(30):
+anthropicAPIKey = os.getenv("ANTHROPIC_API_KEY")
+
+
+startupPositionStatuses = positionStatus.initializeGamesOnStartup()
+gameInstanceDict = startupPositionStatuses[0]
+initializedGameIDList = startupPositionStatuses[1]
+
+for i in range(100):
 
     games_needing_moves = requests.get(url='https://webdiplomacy.net/api.php?route=players/missing_orders',
                                        cookies=cookie).json()
-    for game in games_needing_moves:
-        positionStatus.initializeGamePositionStatus(game['gameID'], countryList[game['countryID']])
-
 
     if (games_needing_moves != []):
 
@@ -544,55 +377,57 @@ for i in range(30):
 
         for game in games_needing_moves:
 
-            '''
-            NOTE TO FUTURE SELF:
-            
-            Continue work on positionStatus.py and its associated systems, determine a way to get Claude
-            to give a basic status of a given game's position and format it properly here
-            '''
+            gameID = game['gameID']
+            countryID = game['countryID']
+
+            if gameID not in initializedGameIDList:
+                gameInstanceDict[gameID] = diplomacyGameInstance.gameInstance(gameID, countryID, None)
+                initializedGameIDList.append(gameID)
+
+            currentGameInstance = gameInstanceDict[gameID]
+
+            #This calls the WebDiplomacy API to get information regarding the given gameID's position
+            parameters = {'gameID': gameID, 'countryID': countryID}
+            # header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
+            rawGameStrJSONData = requests.get(url='https://webdiplomacy.net/api.php?route=game/status', params=parameters,
+                                          cookies=cookie).json()
 
 
             game_turns = []  # List of all previous turns
             following_turn = []  # List containing current turn information
 
-            gameID = game['gameID']
-            countryID = game['countryID']
-            parameters = {'gameID': gameID, 'countryID': countryID}
-            # header = {'Authorization' : 'Bearer ' + apiKey} #When using the wD-Key the header and actual API key are not needed
-            dict_from_file = requests.get(url='https://webdiplomacy.net/api.php?route=game/status', params=parameters,
-                                          cookies=cookie).json()
+            formatAllGameTurnData(rawGameStrJSONData) #Populates the above two lists
 
-            getAllOrders(dict_from_file)
 
-            finalString = ''
+            if following_turn[2] != 0: #If it is not the game's first turn
+                currentGameInstance.getNewStatusAnalysis(formatPreviousAndCurrentMoves(game_turns, following_turn), following_turn[2])
+                #currentGameInstance.getNewStatusAnalysis(compileReadableFollowingTurn(following_turn), following_turn[2])
 
-            finalString = compileReadableMovesFullGame(game_turns)
-            finalString = finalString + getCurrentPosition(dict_from_file['phases'][len(dict_from_file['phases']) - 1]) #THIS IS A TEST CASE
-            finalString = finalString + compileReadableFollowingTurn(following_turn)
-            #print(finalString)
+            finalPostToAIString = ''
+            finalPostToAIString = compileReadableMovesFullGame(game_turns)
+            finalPostToAIString = finalPostToAIString + compileReadableFollowingTurn(following_turn) + "\n"
+            finalPostToAIString = finalPostToAIString + currentGameInstance.getMostRecentStatus()
+            print(finalPostToAIString)
 
             specificGameSystem = initialSystem.replace('PLAYEDGREATPOWER', countryList[countryID])
 
+
             #print(specificGameSystem)
 
-            print(i)
             client = anthropic.Anthropic(
                 # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                api_key="",
+                api_key = anthropicAPIKey,
             )
             message = client.messages.create(
-                model="claude-3-7-sonnet-20250219",
+                model="claude-3-5-sonnet-20241022",
                 max_tokens=1024,
-                temperature=.75, #Normally .6
+                temperature=.7,
                 system=specificGameSystem,
                 messages=[
-                    {"role": "user", "content": finalString}
+                    {"role": "user", "content": finalPostToAIString}
                 ]
             )
-
-            with open('MovesFormated.txt', 'w') as handle:
-                handle.write(finalString)
-                handle.close()
+            print('a')
 
             initialOrderList = json.loads(message.content[0].text)
 
@@ -607,10 +442,6 @@ for i in range(30):
 
             orderList = []
 
-            tempConvoyDict = {}   #This is a bandaid fix for the convoyPath issue and will be used assuming
-                                    #There is not, in fact, an API call that can generate it.
-                                    #Is a dictionary with convoy paths using the army terrID as the key
-
             for order in initialOrderList:
                 order['terrID'] = terrList.index(order['terrID'])
 
@@ -620,25 +451,11 @@ for i in range(30):
                 if order['fromTerrID'] != "":
                     order['fromTerrID'] = terrList.index(order['fromTerrID'])
 
-                if order['type'] == 'Convoy': #Part of the bandaid fix
-                    order['convoyPath'] = [(order['fromTerrID']), order['terrID']]
-                    tempConvoyDict[order['fromTerrID']] = order['convoyPath']
-
-
                 orderList.append(order)
-
-
-            for order in initialOrderList: #Part of the bandaid fix; fills in move orders' convoyPath variable
-                if order['viaConvoy'] == 'Yes':
-
-                    if order['terrID'] in tempConvoyDict.keys(): #If the army has an associated convoyPath
-                        order['convoyPath'] = tempConvoyDict[order['terrID']]
-
 
             postDict['orders'] = orderList
 
             postJSON = json.dumps(postDict)
-            #print(postJSON)
 
 
             movePost = requests.post(url='https://webdiplomacy.net/api.php?route=game/orders', data=postJSON,
@@ -655,4 +472,3 @@ for i in range(30):
             #print(movePost)
 
     time.sleep(15)
-
