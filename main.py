@@ -131,7 +131,7 @@ supplyCenterList = [
 ]
 
 countryList = [
-    0,
+    'Uncontrolled',
     'England',
     'France',
     'Italy',
@@ -150,6 +150,11 @@ countryLoopList = [
     'Turkey',
     'Russia'
 ]
+
+countryNoteDict = {}
+with open('CountryNotes.json') as countryNotes:
+    countryNoteDict = json.load(countryNotes)
+
 
 moveSuccessDict = {'No' : ' (fails)', 'Yes' : ' (succeeds)'}
 
@@ -178,9 +183,16 @@ def compileReadableMovesSingleTurn(turnData):
 
 def compileReadableMovesFullGame(gameData):
     readableData = ''
-    for turn in gameData:
-        readableData = readableData + compileReadableMovesSingleTurn(turn)
-        readableData += '\n'
+
+    if len(gameData) > 4:
+        for i in range(4):
+            readableData = readableData + compileReadableMovesSingleTurn(gameData[len(gameData) - (4 - i)])
+            readableData += '\n'
+
+    else:
+        for turn in gameData:
+            readableData = readableData + compileReadableMovesSingleTurn(turn)
+            readableData += '\n'
 
     return readableData
 
@@ -406,10 +418,16 @@ for i in range(100):
             finalPostToAIString = ''
             finalPostToAIString = compileReadableMovesFullGame(game_turns)
             finalPostToAIString = finalPostToAIString + compileReadableFollowingTurn(following_turn) + "\n"
+
+            finalPostToAIString = finalPostToAIString + positionStatus.getCurrentPosition(
+                rawGameStrJSONData['phases'][len(rawGameStrJSONData['phases']) - 1])
+
             finalPostToAIString = finalPostToAIString + currentGameInstance.getMostRecentStatus()
+            finalPostToAIString = finalPostToAIString + "\n" + countryNoteDict[countryList[countryID]]
             print(finalPostToAIString)
 
             specificGameSystem = initialSystem.replace('PLAYEDGREATPOWER', countryList[countryID])
+            specificGameSystem = specificGameSystem.replace('COUNTRYSPECIFICNOTE', countryNoteDict[countryList[countryID]])
 
 
             #print(specificGameSystem)
@@ -442,6 +460,10 @@ for i in range(100):
 
             orderList = []
 
+            tempConvoyDict = {}  # This is a bandaid fix for the convoyPath issue and will be used assuming
+            # There is not, in fact, an API call that can generate it.
+            # Is a dictionary with convoy paths using the army terrID as the key
+
             for order in initialOrderList:
                 order['terrID'] = terrList.index(order['terrID'])
 
@@ -451,7 +473,18 @@ for i in range(100):
                 if order['fromTerrID'] != "":
                     order['fromTerrID'] = terrList.index(order['fromTerrID'])
 
+                if order['type'] == 'Convoy':  # Part of the bandaid fix
+                    order['convoyPath'] = [(order['fromTerrID']), order['terrID']]
+                    tempConvoyDict[order['fromTerrID']] = order['convoyPath']
+
                 orderList.append(order)
+
+            for order in initialOrderList:  # Part of the bandaid fix; fills in move orders' convoyPath variable
+                if order['viaConvoy'] == 'Yes':
+
+                    if order['terrID'] in tempConvoyDict.keys():  # If the army has an associated convoyPath
+                        order['convoyPath'] = tempConvoyDict[order['terrID']]
+
 
             postDict['orders'] = orderList
 
